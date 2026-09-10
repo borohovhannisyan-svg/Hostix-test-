@@ -1,0 +1,8 @@
+const serviceTrack=document.getElementById('services-track');
+const carouselButtons=[...document.querySelectorAll('[data-service-scroll]')];
+function updateServiceArrows(){const max=serviceTrack.scrollWidth-serviceTrack.clientWidth;carouselButtons.forEach(b=>b.disabled=Number(b.dataset.serviceScroll)<0?serviceTrack.scrollLeft<=2:serviceTrack.scrollLeft>=max-2);}
+carouselButtons.forEach(b=>b.onclick=()=>{serviceTrack.scrollBy({left:Number(b.dataset.serviceScroll)*(serviceTrack.firstElementChild.getBoundingClientRect().width+20),behavior:reduceMotion.matches?'instant':'smooth'});});
+serviceTrack.addEventListener('scroll',updateServiceArrows,{passive:true});window.addEventListener('resize',updateServiceArrows);updateServiceArrows();
+const mapLocales={ru:{europe:'Европа',georgia:'Грузия',armenia:'Армения',turkey:'Турция',iran:'Иран'},en:{europe:'Europe',georgia:'Georgia',armenia:'Armenia',turkey:'Türkiye',iran:'Iran'},hy:{europe:'Եվրոպա',georgia:'Վրաստան',armenia:'Հայաստան',turkey:'Թուրքիա',iran:'Իրան'}};
+window.setMapLanguage=function(language){const lang=language==='am'?'hy':language;const values=mapLocales[lang];if(!values)return false;document.querySelectorAll('[data-map-label]').forEach(el=>{el.textContent=values[el.dataset.mapLabel];el.setAttribute('lang',lang);});const title=document.getElementById('map-title');title.textContent=lang==='ru'?'Карта инфраструктуры: Армения и международные соединения':lang==='en'?'Infrastructure map: Armenia and international connections':'Ենթակառուցվածքի քարտեզ․ Հայաստան և միջազգային կապեր';return true;};
+document.addEventListener('site:languagechange',e=>window.setMapLanguage(e.detail?.language));

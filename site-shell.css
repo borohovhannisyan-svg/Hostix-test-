@@ -1,0 +1,16 @@
+/* ENTRA shared shell — additive only; base header/footer remain from homepage */
+.navlinks>button.current-menu{color:var(--purple);border-bottom-color:var(--accent)}
+.language-switcher{position:relative;display:inline-flex;align-items:center;height:36px;z-index:60}
+.language-current{display:inline-flex;align-items:center;gap:4px;padding:0;color:inherit;font-size:11px;line-height:36px}
+.language-current span{font-size:9px;opacity:.75;transition:transform .2s}
+.language-options{position:absolute;right:0;top:31px;min-width:62px;padding:5px;background:#141929;border:1px solid #ffffff1c;border-radius:8px;box-shadow:0 10px 24px #0003;display:grid;gap:2px;opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .16s,transform .16s,visibility .16s}
+.language-options button{width:100%;padding:7px 9px;border-radius:5px;text-align:left;color:#d5d3dd;font-size:10px;white-space:nowrap}
+.language-options button:hover,.language-options button:focus-visible{background:#ffffff12;color:#fff}
+.language-switcher:hover .language-options,.language-switcher:focus-within .language-options{opacity:1;visibility:visible;transform:translateY(0)}
+.language-switcher:hover .language-current span,.language-switcher:focus-within .language-current span{transform:rotate(180deg)}
+.product-subnav{border-top:1px solid #eee9f3;background:#fff;position:relative;z-index:11}
+.product-subnav .wrap{min-height:43px;display:flex;align-items:center;justify-content:center;gap:28px;overflow-x:auto;scrollbar-width:none;white-space:nowrap}
+.product-subnav .wrap::-webkit-scrollbar{display:none}
+.product-subnav a{font-size:11px;font-weight:600;color:#716a7d;line-height:43px;flex-shrink:0;border-bottom:2px solid transparent}
+.product-subnav a:hover,.product-subnav a:focus-visible{color:var(--purple);border-bottom-color:#b99ae3}
+@media(max-width:760px){.language-current{font-size:9px}.language-options{top:29px;right:-2px}.product-subnav .wrap{justify-content:flex-start;gap:22px;padding-left:20px;padding-right:20px}.product-subnav a{font-size:10px}}
