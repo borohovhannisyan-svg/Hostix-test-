@@ -41,6 +41,22 @@
   });
   renderPrices();
 
+  const stackTabs = qsa('[data-hosting-stack]');
+  const stackCopies = qsa('[data-stack-copy]');
+  const stackPlans = qsa('[data-stack-plans]');
+  stackTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const stack = tab.dataset.hostingStack;
+      stackTabs.forEach(item => {
+        const active = item === tab;
+        item.classList.toggle('is-active', active);
+        item.setAttribute('aria-selected', String(active));
+      });
+      stackCopies.forEach(item => { item.hidden = item.dataset.stackCopy !== stack; });
+      stackPlans.forEach(item => { item.hidden = item.dataset.stackPlans !== stack; });
+    });
+  });
+
   qsa('[data-plan-select]').forEach(btn => {
     btn.addEventListener('click', () => {
       const card = btn.closest('.plan-card');

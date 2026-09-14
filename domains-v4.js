@@ -87,34 +87,54 @@ document.querySelectorAll('.zone-card [data-zone]').forEach(el=>el.addEventListe
 
 const filters=[...document.querySelectorAll('.zone-filter')];
 const cards=[...document.querySelectorAll('.zone-card')];
+const suggestionRows=[...document.querySelectorAll('.domain-suggestion[data-zone]')];
+const suggestionMore=document.getElementById('show-more-suggestions');
 let expanded=false;
+let suggestionsExpanded=false;
+
+const zoneCategories=new Map();
+cards.forEach(card=>{
+  const zone=card.querySelector('[data-zone]')?.dataset.zone;
+  if(zone)zoneCategories.set(zone,(card.dataset.categories||'').split(' ').filter(Boolean));
+});
+const suggestionFallbackCategories={
+  '.site':['business'],
+  '.online':['business','lifestyle']
+};
+
+function categoriesForSuggestion(row){
+  return zoneCategories.get(row.dataset.zone)||suggestionFallbackCategories[row.dataset.zone]||[];
+}
 function applyFilter(category){
-  cards.forEach(card=>{
-    const matches=category==='all'||card.dataset.categories.split(' ').includes(category);
-    const extra=card.classList.contains('extra-zone');
-    card.hidden=!(matches&&(!extra||expanded||category!=='all'));
+  suggestionRows.forEach(row=>{
+    const matches=category==='all'||categoriesForSuggestion(row).includes(category);
+    const extra=row.classList.contains('extra-suggestion');
+    row.hidden=!(matches&&(category!=='all'||!extra||suggestionsExpanded));
   });
-  const more=document.getElementById('show-more-zones');
-  if(more)more.parentElement.style.display=category==='all'?'flex':'none';
+  if(suggestionMore)suggestionMore.parentElement.style.display=category==='all'?'flex':'none';
 }
 filters.forEach(btn=>btn.addEventListener('click',()=>{
   filters.forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');expanded=false;applyFilter(btn.dataset.category);
-  document.querySelector('.zone-catalog-head')?.scrollIntoView({behavior:'smooth',block:'start'});
+  btn.classList.add('active');
+  applyFilter(btn.dataset.category);
 }));
+
 const moreBtn=document.getElementById('show-more-zones');
+function applyZoneExpansion(){
+  cards.forEach(card=>{
+    card.hidden=card.classList.contains('extra-zone')&&!expanded;
+  });
+}
 if(moreBtn)moreBtn.addEventListener('click',e=>{
   expanded=!expanded;
-  const active=document.querySelector('.zone-filter.active')?.dataset.category||'all';
-  applyFilter(active);
+  applyZoneExpansion();
   e.currentTarget.childNodes[0].textContent=expanded?'Скрыть ':'Смотреть ещё ';
 });
 
-const suggestionMore=document.getElementById('show-more-suggestions');
-let suggestionsExpanded=false;
 if(suggestionMore)suggestionMore.addEventListener('click',e=>{
   suggestionsExpanded=!suggestionsExpanded;
-  document.querySelectorAll('.extra-suggestion').forEach(row=>row.hidden=!suggestionsExpanded);
+  const active=document.querySelector('.zone-filter.active')?.dataset.category||'all';
+  applyFilter(active);
   e.currentTarget.childNodes[0].textContent=suggestionsExpanded?'Скрыть варианты ':'Показать ещё варианты ';
 });
 
@@ -128,4 +148,5 @@ contact.addEventListener('submit',e=>{
 });
 
 renderResult(normalizeDomain(domainInput.value));
+applyZoneExpansion();
 applyFilter('all');

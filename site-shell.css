@@ -1,21 +1,133 @@
-/* ENTRA shared shell — additive only; base header/footer remain from homepage */
-.navlinks>button.current-menu{color:var(--purple);border-bottom-color:var(--accent)}
+/* ENTRA shared shell: topbar, header, navigation and mega-menu only. */
+.navlinks>button.current-menu,.navlinks>a.current-menu{color:var(--purple);border-bottom-color:var(--accent)}
 
-/* Language switcher */
-.language-switcher{position:relative;display:inline-flex;align-items:center;height:36px;z-index:60}
-.language-current{display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 2px;color:#d5d3dd;font-size:11px;line-height:1;border:0;background:transparent;white-space:nowrap}
-.language-current:hover{color:#fff}
-.language-current span{display:none}
-.language-current::after{content:"";width:5px;height:5px;border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:translateY(-2px) rotate(45deg);opacity:.8;transition:transform .16s ease}
-.language-options{position:absolute;right:-8px;top:100%;min-width:72px;padding:6px;background:#141929;border:1px solid #ffffff1c;border-radius:8px;box-shadow:0 10px 24px #0004;display:none;gap:2px}
-.language-options button{display:block;width:100%;padding:7px 10px;border:0;border-radius:5px;background:transparent;text-align:left;color:#d5d3dd;font-size:10px;line-height:1.2;white-space:nowrap}
-.language-options button:hover{background:#ffffff12;color:#fff}
-.language-switcher:hover .language-options{display:grid}
-.language-switcher:hover .language-current::after{transform:translateY(1px) rotate(225deg)}
+/* Topbar */
+.topbar{position:relative;z-index:70}
+.topbar .entra-topbar-inner{position:relative;display:flex;align-items:center;justify-content:space-between;min-height:36px;gap:22px}
+.topbar .entra-topbar-inner>.utility-links{display:flex;align-items:center;gap:24px;min-width:0}
+.topbar .utility-links a{display:inline-flex;align-items:center;min-height:36px;white-space:nowrap;color:inherit}
+.topbar .entra-topbar-inner>.utility-contact{display:flex;align-items:center;gap:20px;margin-left:auto;white-space:nowrap}
+.topbar .utility-contact a{display:inline-flex;align-items:center;gap:6px;color:inherit}
+.utility-burger{display:none}
 
+/* Language */
+.language-switcher{position:relative;display:inline-flex;align-items:center;height:36px;z-index:90}
+.language-current{display:inline-flex;align-items:center;gap:5px;padding:0 2px;color:inherit;font-size:11px;line-height:36px;white-space:nowrap}
+.language-current span{font-size:9px;opacity:.72;transition:transform .18s}
+.language-options{position:absolute;right:-7px;top:34px;min-width:72px;padding:5px;background:#141929;border:1px solid #ffffff1c;border-radius:8px;box-shadow:0 12px 28px #0005;display:grid;gap:2px;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-5px);transition:opacity .14s ease,transform .14s ease,visibility .14s}
+.language-options::before{content:"";position:absolute;left:0;right:0;top:-7px;height:8px}
+.language-options button{display:block;width:100%;padding:7px 10px;border-radius:5px;text-align:left;color:#d5d3dd;font-size:10px;line-height:1.2;white-space:nowrap}
+.language-options button:hover,.language-options button:focus-visible{background:#ffffff12;color:#fff}
+.language-switcher:hover .language-options,.language-switcher:focus-within .language-options,.language-switcher.open .language-options{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
+.language-switcher:hover .language-current span,.language-switcher:focus-within .language-current span,.language-switcher.open .language-current span{transform:rotate(180deg)}
+
+/* Header / logo */
+header{overflow:visible}
+header .entra-mainnav{position:relative;display:flex;align-items:center;gap:30px;min-height:76px}
+.entra-brand{position:relative;display:block;width:96px;height:29px;flex:0 0 96px;line-height:0}
+.entra-logo-svg{display:block;width:100%;height:100%;overflow:visible}
+.entra-logo-base{fill:#211831;opacity:1;transition:opacity .28s ease}
+.entra-logo-color{opacity:0;pointer-events:none}
+.entra-logo-color-a{fill:url(#entra-logo-grad-a)}
+.entra-logo-color-b{fill:url(#entra-logo-grad-b)}
+.entra-brand:hover .entra-logo-base,.entra-brand:focus-visible .entra-logo-base{opacity:.08}
+.entra-brand:hover .entra-logo-color-a,.entra-brand:focus-visible .entra-logo-color-a{animation:entraLogoColorA 2.5s ease-in-out infinite}
+.entra-brand:hover .entra-logo-color-b,.entra-brand:focus-visible .entra-logo-color-b{animation:entraLogoColorB 2.5s ease-in-out infinite}
+.footer-entra-brand{width:108px;height:32px;flex:0 0 108px}
+.footer-entra-brand .entra-logo-base{fill:#fff}
+@keyframes entraLogoColorA{0%,100%{opacity:1}50%{opacity:.18}}
+@keyframes entraLogoColorB{0%,100%{opacity:.12}50%{opacity:1}}
+@media(prefers-reduced-motion:reduce){
+  .entra-brand:hover .entra-logo-color-a,.entra-brand:focus-visible .entra-logo-color-a{animation:none;opacity:1}
+  .entra-brand:hover .entra-logo-color-b,.entra-brand:focus-visible .entra-logo-color-b{animation:none;opacity:0}
+}
+
+header .navlinks{display:flex;align-items:stretch;justify-content:center;gap:23px;flex:1;min-width:0;font-size:12px;font-weight:600}
+header .navlinks>button,header .navlinks>a.nav-direct{font-size:14px;font-weight:500;white-space:nowrap;padding:23px 0;display:flex;gap:5px;align-items:center;border-bottom:2px solid transparent;color:inherit;flex-shrink:0;line-height:1.4}
+header .navlinks>a.nav-direct:hover,header .navlinks>a.nav-direct:focus-visible,header .navlinks>button:hover,header .navlinks>button[aria-expanded=true]{color:var(--purple);border-bottom-color:var(--accent)}
+header .navlinks>button>span{display:block;width:7px;height:7px;align-self:center;border-right:1.4px solid currentColor;border-bottom:1.4px solid currentColor;transform:translateY(-2px) rotate(45deg);font-size:0;margin-left:3px;line-height:0;transition:transform .16s ease}
+header .navlinks>button[aria-expanded=true]>span{transform:translateY(2px) rotate(225deg)}
+header .nav-actions{display:flex;gap:10px;flex-shrink:0}
+
+/* Mega menu */
+header .mega-panel{position:absolute;top:var(--entra-mega-top,100%);left:0;right:0;width:100%;background:#fffffff9;border-top:1px solid var(--line);border-bottom:1px solid var(--line);box-shadow:0 25px 40px #21153117;z-index:50;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+header .mega-panel[hidden]{display:none!important}
+header .mega-inner{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:26px;padding-top:20px;padding-bottom:22px}
+header .mega-main{min-width:0}
+header .mega-heading{display:none!important}
+header .mega-items{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px 12px}
+header .mega-item{display:flex;align-items:center;gap:11px;padding:12px 14px;border-radius:10px;min-height:58px;border:1px solid transparent;transition:background .15s ease,border-color .15s ease,color .15s ease}
+header .mega-item:hover,header .mega-item:focus-visible{background:#f3ecfd;border-color:#eadff7;color:var(--ink)}
+header .mega-item>.icon{width:22px;height:22px;color:var(--purple);flex:0 0 22px}
+header .mega-item b{font-size:13px;display:block;font-weight:600;line-height:1.35}
+header .mega-item .item-arrow{margin-left:auto;color:#9b8aa9;font-size:13px;transition:transform .16s ease,color .16s ease}
+header .mega-item:hover .item-arrow,header .mega-item:focus-visible .item-arrow{transform:translate(2px,-2px);color:var(--purple)}
+header .mega-promo{padding:18px 20px;border-radius:13px;background:radial-gradient(ellipse at 95% 0,#9b63e655,transparent 70%),#eee5f9;border:1px solid #d7c4ed;display:flex;flex-direction:column;justify-content:center;align-self:stretch;min-height:148px}
+header .mega-promo strong{font-size:20px;letter-spacing:-.035em;line-height:1.16;margin:0 0 8px;color:#34204e}
+header .mega-promo p{font-size:10px;color:var(--muted);margin:0 0 12px}
+header .mega-promo .promo-link{font-size:11px;font-weight:650;color:var(--purple)}
+
+/* Product page title field: reuse the Domain page palette and dotted pattern. */
+.hosting-hero::before{background:radial-gradient(ellipse at 50% 34%,#e7d8ff9c 0,transparent 48%),radial-gradient(ellipse at 22% 18%,#dff9fd80 0,transparent 35%),radial-gradient(ellipse at 85% 52%,#f1dff188 0,transparent 36%);opacity:1}
+.hosting-hero::after{background:radial-gradient(circle,#70568a26 .75px,transparent .85px);background-size:6px 6px;-webkit-mask-image:radial-gradient(ellipse at center,#000 10%,transparent 72%);mask-image:radial-gradient(ellipse at center,#000 10%,transparent 72%);opacity:1}
+.vps-hero{position:relative;isolation:isolate}
+.vps-hero::before,.vps-hero::after{content:"";position:absolute;top:0;bottom:0;left:50%;width:100vw;transform:translateX(-50%);pointer-events:none;z-index:-1}
+.vps-hero::before{background:radial-gradient(ellipse at 50% 34%,#e7d8ff9c 0,transparent 48%),radial-gradient(ellipse at 22% 18%,#dff9fd80 0,transparent 35%),radial-gradient(ellipse at 85% 52%,#f1dff188 0,transparent 36%),#fff}
+.vps-hero::after{background:radial-gradient(circle,#70568a26 .75px,transparent .85px);background-size:6px 6px;-webkit-mask-image:radial-gradient(ellipse at center,#000 10%,transparent 72%);mask-image:radial-gradient(ellipse at center,#000 10%,transparent 72%)}
+
+
+/* When a main mega-menu is open, it replaces the persistent product subnav visually. */
+header.mega-open .product-subnav{visibility:hidden;pointer-events:none}
+
+/* Product-page secondary navigation mirrors the active main-menu dropdown. */
 .product-subnav{border-top:1px solid #eee9f3;background:#fff;position:relative;z-index:11}
 .product-subnav .wrap{min-height:43px;display:flex;align-items:center;justify-content:center;gap:28px;overflow-x:auto;scrollbar-width:none;white-space:nowrap}
 .product-subnav .wrap::-webkit-scrollbar{display:none}
 .product-subnav a{font-size:11px;font-weight:600;color:#716a7d;line-height:43px;flex-shrink:0;border-bottom:2px solid transparent}
 .product-subnav a:hover,.product-subnav a:focus-visible{color:var(--purple);border-bottom-color:#b99ae3}
-@media(max-width:760px){.language-current{font-size:9px}.language-options{right:-4px}.product-subnav .wrap{justify-content:flex-start;gap:22px;padding-left:20px;padding-right:20px}.product-subnav a{font-size:10px}}
+
+@media(max-width:1100px){
+  header .entra-mainnav{gap:20px}
+  header .navlinks{gap:16px}
+  header .navlinks>button,header .navlinks>a.nav-direct{font-size:13px}
+  header .mega-inner{grid-template-columns:minmax(0,1fr) 220px;gap:18px}
+  header .mega-items{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .topbar .utility-links{gap:17px}
+}
+
+@media(max-width:760px){
+  .topbar .entra-topbar-inner{min-height:36px;gap:10px;padding-left:20px;padding-right:20px}
+  .utility-burger{display:flex;padding:8px 4px;flex-direction:column;gap:4px;min-width:32px;align-items:center;color:inherit}
+  .utility-burger span{display:block;height:1px;width:18px;background:#e5ddf3}
+  .topbar .entra-topbar-inner>.utility-links{display:none;position:absolute;left:0;right:0;top:100%;padding:10px 20px 13px;background:#101727;border-top:1px solid #ffffff12;border-bottom:1px solid #ffffff12;box-shadow:0 12px 25px #0003;flex-direction:column;align-items:stretch;gap:0;z-index:95}
+  .topbar .entra-topbar-inner>.utility-links.open{display:flex}
+  .topbar .entra-topbar-inner>.utility-links a{min-height:38px;padding:0 4px;border-bottom:1px solid #ffffff0d;font-size:11px}
+  .topbar .entra-topbar-inner>.utility-links a:last-child{border-bottom:0}
+  .topbar .entra-topbar-inner>.utility-contact{gap:12px;margin-left:auto}
+  .topbar .support-link span{display:none}
+  .topbar .phone-link{font-size:10px}
+  .language-current{font-size:9px}
+  .language-options{top:29px;right:-2px}
+
+  header .entra-mainnav{min-height:66px;gap:14px;padding:0 20px;margin:0 auto}
+  .entra-brand{width:82px;height:25px;flex-basis:82px}
+  .footer-entra-brand{width:96px;height:29px;flex-basis:96px}
+  header .navlinks{order:initial;width:auto;margin:0;justify-content:flex-start;gap:20px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-inline:contain;touch-action:pan-x;white-space:nowrap;padding-right:8px}
+  header .navlinks::-webkit-scrollbar{display:none}
+  header .navlinks>button,header .navlinks>a.nav-direct{font-size:13px;padding:20px 0 18px;min-height:65px}
+  header .nav-actions{display:none}
+  header .mega-panel{max-height:min(72vh,560px);overflow-y:auto;background:#fff;overscroll-behavior:contain}
+  header .mega-inner{grid-template-columns:1fr;padding:14px 20px 18px;gap:12px}
+  header .mega-items{grid-template-columns:1fr;gap:4px}
+  header .mega-item{min-height:50px;padding:10px 8px}
+  header .mega-item b{font-size:12px}
+  header .mega-item>.icon{width:20px;height:20px;flex-basis:20px}
+  header .mega-promo{min-height:0;padding:14px 16px}
+  header .mega-promo strong{font-size:17px;margin-bottom:5px}
+  header .mega-promo strong br{display:none}
+  header .mega-promo p{display:none}
+  header .mega-promo .promo-link{font-size:10px}
+
+  .product-subnav .wrap{justify-content:flex-start;gap:22px;padding-left:20px;padding-right:20px}
+  .product-subnav a{font-size:10px}
+}
