@@ -414,3 +414,16 @@
     }));
   }
 })();
+
+/* Homepage-only revision loader. It intentionally leaves every product page unchanged. */
+(() => {
+  const file = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+  if (file !== 'index.html' && file !== 'entra-homepage.html' && file !== '') return;
+  const style = document.createElement('link');
+  style.rel = 'stylesheet';
+  style.href = 'homepage-header-update.css';
+  document.head.append(style);
+  const script = document.createElement('script');
+  script.src = 'homepage-header-update.js';
+  document.head.append(script);
+})();
