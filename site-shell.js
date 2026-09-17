@@ -415,10 +415,8 @@
   }
 })();
 
-/* Homepage-only revision loader. It intentionally leaves every product page unchanged. */
+/* Shared header/footer revision loader. Page-specific content remains unchanged. */
 (() => {
-  const file = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
-  if (file !== 'index.html' && file !== 'entra-homepage.html' && file !== '') return;
   const style = document.createElement('link');
   style.rel = 'stylesheet';
   style.href = 'homepage-header-update.css';
