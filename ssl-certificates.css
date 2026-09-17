@@ -54,3 +54,20 @@
   .ssl-card-bottom>div{text-align:left}
   .ssl-card-bottom .btn{width:120px}
 }
+
+/* Readable type scale: shared ENTRA interface sizes, no micro text. */
+.ssl-heading-row p{font-size:13px;line-height:1.6}
+.ssl-filter{font-size:14px;padding:12px 14px}
+.ssl-filter small{font-size:11px;line-height:1.35;margin-top:5px}
+.ssl-card{min-height:128px}
+.ssl-brand{font-size:11px;line-height:1.3;margin-bottom:8px}
+.ssl-recommended{font-size:11px}
+.ssl-card h3{font-size:19px;margin-bottom:7px}
+.ssl-card>p,.ssl-card-copy>p{font-size:12px;line-height:1.5}
+.ssl-badge,.ssl-badge.soft{font-size:12px;font-weight:700}
+.ssl-card li{font-size:12px;line-height:1.45;gap:9px}
+.ssl-card-bottom small{font-size:11px}
+.ssl-card-bottom strong{font-size:20px}
+.ssl-card-bottom span{font-size:11px}
+.ssl-card-bottom .btn{font-size:12px}
+.ssl-more small{font-size:11px;line-height:1.5}
