@@ -2,3 +2,55 @@
 @media(max-width:1100px){.ssl-hero-grid{grid-template-columns:1fr 390px;gap:38px}.ssl-hero-copy h1{font-size:48px}.ssl-type-tabs{grid-template-columns:repeat(3,1fr)}.ssl-product-grid{grid-template-columns:repeat(2,1fr)}.ssl-compare-grid,.ssl-benefits .why-grid{grid-template-columns:repeat(2,1fr)}.ssl-process-grid{grid-template-columns:repeat(2,1fr)}.ssl-process-grid article:nth-child(3){border-left:0;border-top:1px solid #e9e2ed}.ssl-process-grid article:nth-child(4){border-top:1px solid #e9e2ed}.ssl-transfer .feature-transfer-wide{grid-template-columns:1fr 1.3fr}.ssl-transfer-art{display:none}}
 @media(max-width:820px){.ssl-hero-grid{grid-template-columns:1fr;min-height:0;padding-top:55px}.ssl-hero-copy{text-align:center}.ssl-hero-copy>p{margin-left:auto;margin-right:auto}.ssl-hero-actions,.ssl-brandline{justify-content:center}.ssl-trust-panel{max-width:540px;width:100%;margin:auto}.ssl-heading-row{align-items:flex-start;flex-direction:column}.ssl-heading-row p{text-align:left}.ssl-related-grid{grid-template-columns:1fr}.ssl-transfer .feature-transfer-wide{grid-template-columns:1fr}.ssl-transfer .transfer-benefits{grid-template-columns:1fr 1fr}}
 @media(max-width:620px){.ssl-hero-grid{padding-top:42px;padding-bottom:48px}.ssl-hero-copy h1{font-size:38px}.ssl-hero-copy>p{font-size:12px}.ssl-hero-actions{flex-direction:column;align-items:stretch}.ssl-brandline{gap:12px}.ssl-trust-panel{min-height:350px;padding:16px}.ssl-seal{margin-top:28px}.trust-points{grid-template-columns:1fr}.trust-points span:nth-child(n+2){display:none}.ssl-type-tabs{display:flex;overflow-x:auto;scrollbar-width:none}.ssl-filter{flex:0 0 130px}.ssl-product-grid{grid-template-columns:1fr}.ssl-card{min-height:365px}.ssl-more{text-align:center}.ssl-compare-grid,.ssl-benefits .why-grid{grid-template-columns:1fr}.ssl-process-grid{grid-template-columns:1fr}.ssl-process-grid article+article{border-left:0;border-top:1px solid #e9e2ed}.ssl-process-grid article{min-height:175px}.ssl-related-grid>a{min-height:112px}.ssl-transfer .transfer-benefits{grid-template-columns:1fr}}
+
+/* SSL page reuses the established domain-page patterns. */
+.ssl-hero{padding:78px 0 54px}
+.ssl-hero-inner{max-width:900px}
+.ssl-hero h1{margin:0}
+.ssl-hero-inner>p{max-width:720px;margin:20px auto 0;font-size:14px;line-height:1.75;color:var(--muted)}
+.ssl-hero-actions{justify-content:center;margin:28px 0 30px}
+.ssl-brandline{justify-content:center}
+
+.ssl-product-grid{display:block;border:1px solid #e5ddeb;border-radius:18px;overflow:hidden;background:#fff;box-shadow:0 10px 28px #38234e08}
+.ssl-card{min-height:116px;padding:16px 18px 16px 22px;display:grid;grid-template-columns:minmax(230px,1.25fr) 110px minmax(225px,.9fr) minmax(245px,.8fr);align-items:center;gap:20px;border:0;border-radius:0;background:linear-gradient(90deg,#fff,#fbf9fd);box-shadow:none}
+.ssl-card+.ssl-card{border-top:1px solid #ece6f0}
+.ssl-card.recommended{border-color:transparent;background:linear-gradient(90deg,#fff,#fbf9fd)}
+.ssl-card-copy{min-width:0}
+.ssl-card-top{justify-content:flex-start;gap:8px}
+.ssl-brand{display:block;margin-bottom:7px;font-size:9px;color:#756782}
+.ssl-card-top .ssl-brand{margin-bottom:0}
+.ssl-recommended{font-size:8px;font-weight:700;color:var(--purple)}
+.ssl-card h3{margin:0 0 6px;font-size:16px;line-height:1.25;letter-spacing:-.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ssl-card>p,.ssl-card-copy>p{min-height:0;margin:0;font-size:9px;line-height:1.45;color:var(--muted)}
+.ssl-badge,.ssl-badge.soft{justify-self:start;min-width:74px;padding:8px 12px;border:1px solid #e2d8ec;border-radius:9px;background:#f4eff8;color:#6d4b92;text-align:center;font-size:9px}
+.ssl-card ul{margin:0;padding:0;border:0;display:grid;gap:5px;list-style:none}
+.ssl-card li{font-size:9px;line-height:1.35;color:#5e5266}
+.ssl-card li:before{content:"✓";color:#6f46a0;font-weight:800}
+.ssl-card-bottom{margin:0;display:grid;grid-template-columns:minmax(105px,1fr) 112px;align-items:center;gap:16px}
+.ssl-card-bottom>div{text-align:right}
+.ssl-card-bottom small{margin-bottom:4px}
+.ssl-card-bottom strong{font-size:18px;font-variant-numeric:tabular-nums}
+.ssl-card-bottom .btn{width:112px;height:42px;border-radius:9px;padding:0 14px}
+
+@media(max-width:1100px){
+  .ssl-card{grid-template-columns:minmax(210px,1.15fr) 90px minmax(180px,.8fr) minmax(225px,.75fr);gap:14px}
+}
+@media(max-width:820px){
+  .ssl-hero{padding-top:55px}
+  .ssl-hero h1{font-size:43px}
+  .ssl-card{min-height:0;grid-template-columns:minmax(0,1fr) auto;gap:12px 18px;padding:18px}
+  .ssl-badge{justify-self:end}
+  .ssl-card ul{grid-column:1/2}
+  .ssl-card-bottom{grid-column:2/3;grid-row:2/3}
+}
+@media(max-width:620px){
+  .ssl-hero{padding:42px 0 48px}
+  .ssl-hero h1{font-size:37px}
+  .ssl-hero-inner>p{font-size:12px}
+  .ssl-hero-actions{flex-direction:column;align-items:stretch}
+  .ssl-card{grid-template-columns:1fr auto}
+  .ssl-card ul{grid-column:1/-1;grid-template-columns:repeat(3,minmax(0,1fr));padding-top:4px}
+  .ssl-card-bottom{grid-column:1/-1;grid-row:auto;grid-template-columns:1fr 120px;padding-top:4px}
+  .ssl-card-bottom>div{text-align:left}
+  .ssl-card-bottom .btn{width:120px}
+}
