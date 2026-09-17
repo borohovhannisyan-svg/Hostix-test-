@@ -1,0 +1,22 @@
+/* Shared header/footer revision. Page-specific content remains unchanged. */
+header .navlinks{gap:10px}
+header .navlinks>button,header .navlinks>a.nav-direct{font-size:16px}
+.currency-switcher{position:relative;display:inline-flex;align-items:center;height:36px;z-index:90}
+.currency-current{display:inline-flex;align-items:center;gap:5px;padding:0 2px;color:inherit;font-size:11px;line-height:36px;white-space:nowrap}
+.currency-current span{font-size:9px;opacity:.72;transition:transform .18s}
+.currency-options{position:absolute;right:-7px;top:34px;min-width:94px;padding:5px;background:#141929;border:1px solid #ffffff1c;border-radius:8px;box-shadow:0 12px 28px #0005;display:grid;gap:2px;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-5px);transition:opacity .14s ease,transform .14s ease,visibility .14s}
+.currency-options button{width:100%;padding:7px 10px;border-radius:5px;text-align:left;color:#d5d3dd;font-size:10px;white-space:nowrap}
+.currency-options button:hover,.currency-options button:focus-visible{background:#ffffff12;color:#fff}
+.currency-switcher:hover .currency-options,.currency-switcher:focus-within .currency-options,.currency-switcher.open .currency-options{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
+.currency-switcher:hover .currency-current span,.currency-switcher:focus-within .currency-current span,.currency-switcher.open .currency-current span{transform:rotate(180deg)}
+.homepage-search-field{position:relative;margin:4px 0 22px}
+.homepage-search-field svg{position:absolute;left:15px;top:50%;width:19px;height:19px;transform:translateY(-50%);color:var(--purple)}
+.homepage-search-field input{min-height:52px;padding-left:46px;border-radius:12px;font-size:14px}
+.solution-categories{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:12px}
+.solution-categories a{padding:12px;border:1px solid var(--line);border-radius:10px;background:#fbf9fe;font-size:12px;font-weight:600}
+.solution-categories a:hover,.solution-categories a:focus-visible{color:var(--purple);border-color:#c9afe8;background:#f4edfd}
+.search-visual-status{min-height:20px;margin-top:12px;font-size:11px;color:var(--muted)}
+.login-choices{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
+.login-choices .btn{margin-top:0}
+@media(max-width:1100px){header .navlinks>button,header .navlinks>a.nav-direct{font-size:14px}}
+@media(max-width:760px){.currency-current{font-size:9px}.currency-options{top:29px;right:-2px}.solution-categories{grid-template-columns:1fr 1fr}.login-choices{grid-template-columns:1fr}}

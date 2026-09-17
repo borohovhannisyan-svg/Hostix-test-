@@ -5,6 +5,8 @@ const resultDomain=document.getElementById('result-domain');
 const resultLabel=document.getElementById('result-label');
 const resultPrice=document.getElementById('result-price');
 const resultAction=document.getElementById('result-action');
+const whoisPrivacy=document.getElementById('whois-privacy');
+const whoisOptionState=document.getElementById('whois-option-state');
 
 // Prototype only. Replace availability/pricing with WHMCS/API data on the test server.
 const takenDomains=new Set(['entra.am','reg.am','hayhost.am','google.com','apple.com','boro.ru']);
@@ -150,3 +152,7 @@ contact.addEventListener('submit',e=>{
 renderResult(normalizeDomain(domainInput.value));
 applyZoneExpansion();
 applyFilter('all');
+
+whoisPrivacy?.addEventListener('change',()=>{
+  if(whoisOptionState)whoisOptionState.textContent=whoisPrivacy.checked?'Добавлено':'Не выбрано';
+});

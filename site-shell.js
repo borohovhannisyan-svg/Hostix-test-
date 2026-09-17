@@ -7,10 +7,8 @@
 
   const menus = {
     domains: [
-      ['i-globe', 'Регистрация домена', 'entra-domains.html#top'],
-      ['i-send', 'Перенос домена — бесплатно', 'entra-domains.html#transfer'],
-      ['i-shield-check', 'Скрытая регистрация', 'entra-domains.html#why'],
-      ['i-shield-check', 'SSL-сертификат', 'entra-domains.html#infrastructure']
+      ['i-globe', 'Регистрация домена', 'domain-registration.html#top'],
+      ['i-shield-check', 'SSL-сертификаты', 'ssl-certificates.html#top']
     ],
     hosting: [
       ['i-globe', 'Виртуальный хостинг', 'entra-hosting.html#standard'],
@@ -59,7 +57,7 @@
   ];
 
   const currentFile = (location.pathname.split('/').pop() || 'entra-homepage.html').toLowerCase();
-  const currentMenu = currentFile.includes('domains') ? 'domains'
+  const currentMenu = (currentFile.includes('domain') || currentFile.includes('ssl-certificates')) ? 'domains'
     : currentFile.includes('hosting') ? 'hosting'
       : (currentFile.includes('vps') || currentFile.includes('cloud')) ? 'cloud'
         : (currentFile.includes('dedicated') || currentFile.includes('colocation')) ? 'server'
@@ -83,7 +81,7 @@
           <div class="mega-main">
             <div class="mega-items">${links}</div>
           </div>
-          <a class="mega-promo" href="entra-domains.html#top">
+          <a class="mega-promo" href="domain-registration.html#top">
             <strong>Ваш домен.<br>Хостинг в подарок.</strong>
             <p>Начните проект с готовой основы.</p>
             <span class="promo-link">Выбрать домен →</span>
@@ -409,8 +407,19 @@
   if (searchDialog && searchDialogTitle && searchDialogBody) {
     $$('[data-search]', header || document).forEach(button => button.addEventListener('click', () => {
       searchDialogTitle.textContent = 'Найдите свой продукт';
-      searchDialogBody.innerHTML = '<div class="search-results"><a href="entra-domains.html#top">Домены →</a><a href="entra-hosting.html#standard">Хостинг →</a><a href="entra-vps.html#plans">VPS →</a><a href="entra-dedicated.html#catalog">Выделенные серверы →</a><a href="entra-mail.html">Корпоративная почта →</a><a href="entra-vpn.html#armenia">VPN →</a></div>';
+      searchDialogBody.innerHTML = '<div class="search-results"><a href="domain-registration.html#top">Домены →</a><a href="entra-hosting.html#standard">Хостинг →</a><a href="entra-vps.html#plans">VPS →</a><a href="entra-dedicated.html#catalog">Выделенные серверы →</a><a href="entra-mail.html">Корпоративная почта →</a><a href="entra-vpn.html#armenia">VPN →</a></div>';
       searchDialog.showModal();
     }));
   }
+})();
+
+/* Shared header/footer revision loader. Page-specific content remains unchanged. */
+(() => {
+  const style = document.createElement('link');
+  style.rel = 'stylesheet';
+  style.href = 'homepage-header-update.css';
+  document.head.append(style);
+  const script = document.createElement('script');
+  script.src = 'homepage-header-update.js';
+  document.head.append(script);
 })();
