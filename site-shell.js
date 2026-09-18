@@ -11,11 +11,10 @@
       ['i-shield-check', 'SSL-сертификаты', 'ssl-certificates.html#top']
     ],
     hosting: [
-      ['i-globe', 'Виртуальный хостинг', 'entra-hosting.html#standard'],
-      ['i-gauge', 'Премиум-хостинг', 'entra-hosting.html#premium'],
-      ['i-send', 'Перенос сайта — бесплатно', 'entra-hosting.html#migration'],
-      ['i-wrench', 'Хостинг для 1С-Битрикс', 'entra-hosting.html#cms-stack'],
-      ['i-image', 'Хостинг для WordPress', 'entra-hosting.html#wordpress']
+      ['i-globe', 'Виртуальный хостинг', 'virtual-hosting.html#plans'],
+      ['i-gauge', 'Премиум-хостинг', 'premium-hosting.html#plans'],
+      ['i-wrench', 'Хостинг для 1С-Битрикс', '1c-bitrix-hosting.html#plans'],
+      ['i-image', 'Хостинг для WordPress', 'wordpress-hosting.html#plans']
     ],
     cloud: [
       ['i-network', 'VPS', 'entra-vps.html#plans'],
@@ -134,6 +133,20 @@
     });
   }
 
+  function updateLegacyHostingLinks() {
+    const destinations = {
+      premium: 'premium-hosting.html#plans',
+      wordpress: 'wordpress-hosting.html#plans',
+      'cms-stack': '1c-bitrix-hosting.html#plans'
+    };
+
+    $$('a[href*="entra-hosting.html"]').forEach(link => {
+      const href = link.getAttribute('href') || '';
+      const hash = href.split('#')[1] || 'standard';
+      link.setAttribute('href', destinations[hash] || 'virtual-hosting.html#plans');
+    });
+  }
+
   function renderShell() {
     const topbar = $('.topbar');
     const header = $('header');
@@ -192,6 +205,7 @@
   renderShell();
   renderFooterLogo();
   renderFooterLinks();
+  updateLegacyHostingLinks();
 
   const header = $('header');
   const menuButtons = $$('[data-menu]', header || document);
@@ -407,7 +421,7 @@
   if (searchDialog && searchDialogTitle && searchDialogBody) {
     $$('[data-search]', header || document).forEach(button => button.addEventListener('click', () => {
       searchDialogTitle.textContent = 'Найдите свой продукт';
-      searchDialogBody.innerHTML = '<div class="search-results"><a href="domain-registration.html#top">Домены →</a><a href="entra-hosting.html#standard">Хостинг →</a><a href="entra-vps.html#plans">VPS →</a><a href="entra-dedicated.html#catalog">Выделенные серверы →</a><a href="entra-mail.html">Корпоративная почта →</a><a href="entra-vpn.html#armenia">VPN →</a></div>';
+      searchDialogBody.innerHTML = '<div class="search-results"><a href="domain-registration.html#top">Домены →</a><a href="virtual-hosting.html#plans">Хостинг →</a><a href="entra-vps.html#plans">VPS →</a><a href="entra-dedicated.html#catalog">Выделенные серверы →</a><a href="entra-mail.html">Корпоративная почта →</a><a href="entra-vpn.html#armenia">VPN →</a></div>';
       searchDialog.showModal();
     }));
   }
