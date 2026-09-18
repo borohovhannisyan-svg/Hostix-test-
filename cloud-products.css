@@ -1,0 +1,68 @@
+body[data-page-version="cloud-product-v1"]{background:#fff}
+.cloud-product-hero{padding:78px 0 64px}
+.cloud-product-hero h1{max-width:940px;margin:14px auto 0;font-size:56px;line-height:1.05}
+.cloud-product-hero>div>p{font-size:17px;line-height:1.7;max-width:760px}
+.cloud-product-hero .cloud-hero-facts span{font-size:14px;padding:9px 13px}
+.cloud-product-section{padding-top:76px;padding-bottom:76px}
+.cloud-product-heading{display:flex;justify-content:space-between;align-items:end;gap:48px;margin-bottom:32px}
+.cloud-product-heading h2,.cloud-faq h2,.cloud-storage-split h2{font-size:40px;line-height:1.12;text-align:left;margin:9px 0 0}
+.cloud-product-heading>p{max-width:520px;font-size:16px;line-height:1.7;color:var(--muted)}
+.cloud-feature-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.cloud-feature-card{min-height:190px;padding:26px;border:1px solid var(--line);border-radius:18px;background:#fff}
+.cloud-feature-card strong{display:block;font-size:20px;line-height:1.25;color:#21142d}
+.cloud-feature-card p{margin-top:12px;font-size:15px;line-height:1.65;color:var(--muted)}
+
+.desktop-plan-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.desktop-plan{min-height:520px;padding:26px;border:1px solid #e2d9eb;border-radius:18px;background:#f8f4fc;display:flex;flex-direction:column}
+.desktop-plan:nth-child(2){background:#f2f6fc}.desktop-plan:nth-child(3){background:#f6f8f5}
+.desktop-plan.accent{background:radial-gradient(circle at 100% 0,#e8dafe,#fff 65%);border-color:#cbb4e6}
+.plan-kicker{font-size:13px;line-height:1.4;font-weight:800;letter-spacing:.08em;color:#765294}
+.desktop-plan h3{font-size:23px;line-height:1.22;margin:22px 0 12px}
+.desktop-plan>p{font-size:15px;line-height:1.6;color:var(--muted);min-height:96px}
+.desktop-plan ul{list-style:none;margin:20px 0 0;padding:0;border-top:1px solid #e4dbe9}
+.desktop-plan li{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:52px;border-bottom:1px solid #e8e1ed}
+.desktop-plan li span{font-size:14px;color:#746a7d}.desktop-plan li strong{font-size:16px;font-weight:800;text-align:right}
+.desktop-plan .btn{width:100%;margin-top:auto;min-height:48px;font-size:16px}
+
+.engine-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.engine-card{display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center;padding:28px;border:1px solid var(--line);border-radius:18px;background:#f8f4fc}
+.engine-card:nth-child(2){background:#f2f6fc}
+.engine-mark{width:64px;height:64px;display:grid;place-items:center;border:1px solid #d8c9e6;border-radius:16px;background:#fff;font-weight:800;font-size:20px;color:#7040c7}
+.engine-card h3{font-size:25px;margin-bottom:7px}.engine-card p{font-size:15px;line-height:1.6;color:var(--muted)}
+.engine-card .btn{grid-column:1/3;justify-self:start;font-size:15px}
+.responsibility-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.responsibility-grid article{padding:30px;border:1px solid var(--line);border-radius:18px;background:#f8f4fc}
+.responsibility-grid article:nth-child(2){background:#f2f6fc}.responsibility-grid h3{font-size:25px;margin-bottom:20px}
+.responsibility-grid ul{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.responsibility-grid li{position:relative;padding-left:22px;font-size:15px;line-height:1.55;color:#55485f}
+.responsibility-grid li::before{content:"✓";position:absolute;left:0;color:#7040c7;font-weight:800}
+
+.use-case-list{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#fff}
+.use-case-list article{display:grid;grid-template-columns:70px 1fr;gap:24px;align-items:center;padding:25px 28px;border-bottom:1px solid var(--line)}
+.use-case-list article:last-child{border-bottom:0}.use-case-list article>span{font-size:14px;font-weight:800;color:#7040c7}
+.use-case-list h3{font-size:21px;margin-bottom:5px}.use-case-list p{font-size:15px;line-height:1.6;color:var(--muted)}
+
+.ftp-solution-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.ftp-solution-grid article{min-height:250px;padding:28px;border:1px solid var(--line);border-radius:18px;background:#f8f4fc;display:flex;flex-direction:column}
+.ftp-solution-grid article:nth-child(2n){background:#f2f6fc}.ftp-solution-grid article>span{font-size:14px;font-weight:800;color:#7040c7}
+.ftp-solution-grid h3{font-size:24px;margin:28px 0 10px}.ftp-solution-grid p{font-size:15px;line-height:1.65;color:var(--muted)}
+.ftp-solution-grid strong{margin-top:auto;padding-top:24px;font-size:15px;color:#5f377e}
+.cloud-storage-split{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+.cloud-storage-split>div>p{font-size:16px;line-height:1.7;color:#c5bdcd;margin-top:16px}
+.cloud-storage-split .cloud-points span{font-size:14px}
+
+.cloud-faq{max-width:1100px}.cloud-faq>.eyebrow{margin-bottom:8px}.cloud-faq h2{margin-bottom:28px}
+.cloud-faq-item{border:1px solid var(--line);border-radius:14px;background:#fff;margin-bottom:10px;overflow:hidden}
+.cloud-faq-item summary{list-style:none;cursor:pointer;padding:21px 22px;display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:16px;font-weight:700}
+.cloud-faq-item summary::-webkit-details-marker{display:none}.cloud-faq-item summary span{font-size:23px;color:#7040c7;transition:transform .2s}
+.cloud-faq-item[open] summary span{transform:rotate(45deg)}
+.cloud-faq-item p{padding:0 22px 21px;max-width:860px;font-size:15px;line-height:1.7;color:var(--muted)}
+
+@media(max-width:1100px){.desktop-plan-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.cloud-feature-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){
+  .cloud-product-hero{padding:50px 0 46px}.cloud-product-hero h1{font-size:39px}.cloud-product-hero>div>p{font-size:16px}
+  .cloud-product-section{padding-top:52px;padding-bottom:52px}.cloud-product-heading{display:block}.cloud-product-heading h2,.cloud-faq h2,.cloud-storage-split h2{font-size:31px}.cloud-product-heading>p{margin-top:14px}
+  .desktop-plan-grid{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-left:-20px;margin-right:-20px;padding:0 20px 12px}.desktop-plan-grid::-webkit-scrollbar{display:none}.desktop-plan{flex:0 0 min(82vw,360px);scroll-snap-align:start}
+  .cloud-feature-grid,.engine-grid,.responsibility-grid,.ftp-solution-grid,.cloud-storage-split{grid-template-columns:1fr}.engine-card{grid-template-columns:auto 1fr}.engine-card .btn{grid-column:1/3;width:100%}
+  .use-case-list article{grid-template-columns:42px 1fr;gap:12px;padding:22px 18px}
+}

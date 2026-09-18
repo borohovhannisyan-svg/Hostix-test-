@@ -17,11 +17,11 @@
       ['i-image', 'Хостинг для WordPress', 'wordpress-hosting.html#plans']
     ],
     cloud: [
-      ['i-network', 'VPS', 'entra-vps.html#plans'],
-      ['i-briefcase', 'Виртуальные рабочие столы Windows', 'entra-cloud.html#desktops'],
-      ['i-gauge', 'Облачная база данных', 'entra-cloud.html#database'],
-      ['i-image', 'Облачное хранилище S3', 'entra-cloud.html#s3'],
-      ['i-send', 'Облачное хранилище FTP', 'entra-cloud.html#ftp']
+      ['i-network', 'VPS', 'vps-hosting.html#plans'],
+      ['i-briefcase', 'Рабочие столы Windows', 'windows-desktop.html'],
+      ['i-gauge', 'Облачная база данных', 'cloud-database.html'],
+      ['i-image', 'Облачное хранилище S3', 's3-storage.html'],
+      ['i-send', 'Облачное хранилище FTP', 'ftp-storage.html']
     ],
     server: [
       ['i-briefcase', 'Выделенный сервер', 'entra-dedicated.html#catalog'],
@@ -58,7 +58,7 @@
   const currentFile = (location.pathname.split('/').pop() || 'entra-homepage.html').toLowerCase();
   const currentMenu = (currentFile.includes('domain') || currentFile.includes('ssl-certificates')) ? 'domains'
     : currentFile.includes('hosting') ? 'hosting'
-      : (currentFile.includes('vps') || currentFile.includes('cloud')) ? 'cloud'
+      : (currentFile.includes('vps') || currentFile.includes('cloud') || currentFile.includes('windows-desktop') || currentFile.includes('s3-storage') || currentFile.includes('ftp-storage')) ? 'cloud'
         : (currentFile.includes('dedicated') || currentFile.includes('colocation')) ? 'server'
           : currentFile.includes('mail') ? 'mail'
             : currentFile.includes('vpn') ? 'vpn'
@@ -147,6 +147,27 @@
     });
   }
 
+  function updateLegacyCloudLinks() {
+    const cloudDestinations = {
+      desktops: 'windows-desktop.html',
+      database: 'cloud-database.html',
+      s3: 's3-storage.html',
+      ftp: 'ftp-storage.html'
+    };
+
+    $$('a[href*="entra-cloud.html"]').forEach(link => {
+      const href = link.getAttribute('href') || '';
+      const hash = href.split('#')[1] || '';
+      link.setAttribute('href', cloudDestinations[hash] || 'vps-hosting.html');
+    });
+
+    $$('a[href*="entra-vps.html"]').forEach(link => {
+      const href = link.getAttribute('href') || '';
+      const hash = href.split('#')[1];
+      link.setAttribute('href', `vps-hosting.html${hash ? `#${hash}` : ''}`);
+    });
+  }
+
   function renderShell() {
     const topbar = $('.topbar');
     const header = $('header');
@@ -206,6 +227,7 @@
   renderFooterLogo();
   renderFooterLinks();
   updateLegacyHostingLinks();
+  updateLegacyCloudLinks();
 
   function updateActiveSubnav() {
     const links = $$('.product-subnav a');
@@ -433,7 +455,7 @@
   if (searchDialog && searchDialogTitle && searchDialogBody) {
     $$('[data-search]', header || document).forEach(button => button.addEventListener('click', () => {
       searchDialogTitle.textContent = 'Найдите свой продукт';
-      searchDialogBody.innerHTML = '<div class="search-results"><a href="domain-registration.html#top">Домены →</a><a href="virtual-hosting.html#plans">Хостинг →</a><a href="entra-vps.html#plans">VPS →</a><a href="entra-dedicated.html#catalog">Выделенные серверы →</a><a href="entra-mail.html">Корпоративная почта →</a><a href="entra-vpn.html#armenia">VPN →</a></div>';
+      searchDialogBody.innerHTML = '<div class="search-results"><a href="domain-registration.html#top">Домены →</a><a href="virtual-hosting.html#plans">Хостинг →</a><a href="vps-hosting.html#plans">VPS →</a><a href="entra-dedicated.html#catalog">Выделенные серверы →</a><a href="entra-mail.html">Корпоративная почта →</a><a href="entra-vpn.html#armenia">VPN →</a></div>';
       searchDialog.showModal();
     }));
   }
