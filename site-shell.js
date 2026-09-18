@@ -207,6 +207,18 @@
   renderFooterLinks();
   updateLegacyHostingLinks();
 
+  function updateActiveSubnav() {
+    const links = $$('.product-subnav a');
+    const matching = links.filter(link => new URL(link.href).pathname === location.pathname);
+    const active = matching.find(link => new URL(link.href).hash === location.hash) || matching[0];
+    links.forEach(link => {
+      if (link === active) link.setAttribute('aria-current', matching.length > 1 ? 'location' : 'page');
+      else link.removeAttribute('aria-current');
+    });
+  }
+  updateActiveSubnav();
+  addEventListener('hashchange', updateActiveSubnav);
+
   const header = $('header');
   const menuButtons = $$('[data-menu]', header || document);
   let openKey = null;

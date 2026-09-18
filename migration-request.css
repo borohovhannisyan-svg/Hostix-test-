@@ -1,0 +1,14 @@
+.migration-dialog{width:min(560px,calc(100% - 32px));max-height:90vh;overflow:auto;padding:36px;border:1px solid var(--line,#e3dae9);border-radius:22px;color:var(--ink,#20152f);background:#fff}
+.migration-dialog::backdrop{background:#17152280}
+.migration-dialog h2{font-size:28px;text-align:left;margin:0 32px 16px 0}
+.migration-dialog p,.migration-dialog label{font-size:16px;line-height:1.55}
+.migration-dialog form{display:grid;gap:12px;margin-top:24px}
+.migration-dialog input:not([type=checkbox]),.migration-dialog textarea{display:block;width:100%;box-sizing:border-box;padding:12px 14px;border:1px solid #d9cee5;border-radius:10px;background:#fff;color:#20152f;font:inherit;font-size:16px}
+.migration-dialog input:focus-visible,.migration-dialog textarea:focus-visible{outline:2px solid var(--purple,#7040c7);outline-offset:2px}
+.migration-dialog .migration-choice{display:flex;align-items:flex-start;gap:10px;margin:8px 0}
+.migration-choice input{margin-top:6px;accent-color:var(--purple,#7040c7)}
+.migration-dialog [hidden]{display:none!important}
+.migration-dialog .btn{margin-top:12px;font-size:16px}
+.migration-dialog .btn:disabled{opacity:.6;cursor:wait}
+.migration-dialog .migration-status{margin-top:16px}
+@media(max-width:600px){.migration-dialog{padding:28px 20px}}
