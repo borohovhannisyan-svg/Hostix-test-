@@ -6,7 +6,7 @@
 .migration-dialog input:not([type=checkbox]),.migration-dialog textarea{display:block;width:100%;box-sizing:border-box;padding:12px 14px;border:1px solid #d9cee5;border-radius:10px;background:#fff;color:#20152f;font:inherit;font-size:16px}
 .migration-dialog input:focus-visible,.migration-dialog textarea:focus-visible{outline:2px solid var(--purple,#7040c7);outline-offset:2px}
 .migration-dialog .migration-choice{display:flex;align-items:flex-start;gap:10px;margin:8px 0}
-.migration-choice input{margin-top:6px;accent-color:var(--purple,#7040c7)}
+.migration-dialog .migration-choice input{flex:0 0 18px;width:18px;height:18px;min-width:18px;margin:4px 0 0;padding:0;accent-color:var(--purple,#7040c7)}
 .migration-dialog [hidden]{display:none!important}
 .migration-dialog .btn{margin-top:12px;font-size:16px}
 .migration-dialog .btn:disabled{opacity:.6;cursor:wait}
