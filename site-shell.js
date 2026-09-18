@@ -57,8 +57,8 @@
 
   const currentFile = (location.pathname.split('/').pop() || 'entra-homepage.html').toLowerCase();
   const currentMenu = (currentFile.includes('domain') || currentFile.includes('ssl-certificates')) ? 'domains'
-    : currentFile.includes('hosting') ? 'hosting'
-      : (currentFile.includes('vps') || currentFile.includes('cloud') || currentFile.includes('windows-desktop') || currentFile.includes('s3-storage') || currentFile.includes('ftp-storage')) ? 'cloud'
+    : (currentFile.includes('vps') || currentFile.includes('cloud') || currentFile.includes('windows-desktop') || currentFile.includes('s3-storage') || currentFile.includes('ftp-storage')) ? 'cloud'
+      : currentFile.includes('hosting') ? 'hosting'
         : (currentFile.includes('dedicated') || currentFile.includes('colocation')) ? 'server'
           : currentFile.includes('mail') ? 'mail'
             : currentFile.includes('vpn') ? 'vpn'
