@@ -39,6 +39,10 @@ module.exports = async function handler(req, res) {
     return res.status(500).json({ ok: false, error: "Email service is not configured" });
   }
 
+  if (body.dryRun === true) {
+    return res.status(200).json({ ok: true, configured: true });
+  }
+
   const subject = `[Անիի ծնունդ] ${status} — ${name}`;
   const html = `
     <div style="font-family:Arial,sans-serif;line-height:1.55;color:#17151a">
