@@ -40,7 +40,7 @@ module.exports = async function handler(req, res) {
   }
 
   if (body.dryRun === true) {
-    return res.status(200).json({ ok: true, configured: true });
+    return res.status(200).json({ ok: true, configured: true, senderConfigured: Boolean(process.env.RSVP_FROM_EMAIL) });
   }
 
   const subject = `[Անիի ծնունդ] ${status} — ${name}`;
