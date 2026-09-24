@@ -9,12 +9,12 @@
 
   const serverPanel = $('#menu-server', header || document);
   const firstServerLink = serverPanel ? $('.mega-item', serverPanel) : null;
-  if (firstServerLink) firstServerLink.href = 'entra-dedicated.html#catalog';
+  if (firstServerLink) firstServerLink.href = 'dedicated-server.html#catalog';
 
   if (header && !$('.product-subnav', header) && serverPanel) {
     const links = $$('.mega-item', serverPanel).map((link, index) => {
       const label = $('b', link)?.textContent?.trim() || link.textContent.trim();
-      const href = index === 0 ? 'entra-dedicated.html#catalog' : link.getAttribute('href');
+      const href = index === 0 ? 'dedicated-server.html#catalog' : link.getAttribute('href');
       return `<a href="${href}">${label}</a>`;
     }).join('');
     header.insertAdjacentHTML('beforeend', `<div class="product-subnav" aria-label="Разделы server"><div class="wrap">${links}</div></div>`);

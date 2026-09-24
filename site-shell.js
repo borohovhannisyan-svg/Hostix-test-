@@ -24,10 +24,10 @@
       ['i-send', 'Облачное хранилище FTP', 'ftp-storage.html']
     ],
     server: [
-      ['i-briefcase', 'Выделенный сервер', 'entra-dedicated.html#catalog'],
-      ['i-network', 'Коллокация сервера', 'entra-colocation.html#colocation'],
-      ['i-users', 'Выделенные рабочие столы Windows', 'entra-dedicated.html#enterprise-solutions'],
-      ['i-wrench', 'Сервер для 1С', 'entra-dedicated.html#enterprise-solutions']
+      ['i-briefcase', 'Выделенный сервер', 'dedicated-server.html#catalog'],
+      ['i-network', 'Колокация сервера', 'server-colocation.html'],
+      ['i-users', 'Выделенные рабочие столы Windows', 'windows-dedicated-desktop.html'],
+      ['i-wrench', 'Сервер для 1С', '1c-server.html']
     ],
     vpn: [
       ['i-shield-check', 'VPN в Армении', 'entra-vpn.html#armenia'],
@@ -59,7 +59,7 @@
   const currentMenu = (currentFile.includes('domain') || currentFile.includes('ssl-certificates')) ? 'domains'
     : (currentFile.includes('vps') || currentFile.includes('cloud') || currentFile.includes('windows-desktop') || currentFile.includes('s3-storage') || currentFile.includes('ftp-storage')) ? 'cloud'
       : currentFile.includes('hosting') ? 'hosting'
-        : (currentFile.includes('dedicated') || currentFile.includes('colocation')) ? 'server'
+        : (currentFile.includes('dedicated') || currentFile.includes('colocation') || currentFile.includes('1c-server')) ? 'server'
           : currentFile.includes('mail') ? 'mail'
             : currentFile.includes('vpn') ? 'vpn'
               : currentFile.includes('services') ? 'services'
@@ -168,6 +168,17 @@
     });
   }
 
+  function updateLegacyServerLinks() {
+    $$('a[href*="entra-dedicated.html"]').forEach(link => {
+      const href = link.getAttribute('href') || '';
+      const hash = href.split('#')[1];
+      link.setAttribute('href', `dedicated-server.html${hash ? `#${hash}` : ''}`);
+    });
+    $$('a[href*="entra-colocation.html"]').forEach(link => {
+      link.setAttribute('href', 'server-colocation.html');
+    });
+  }
+
   function renderShell() {
     const topbar = $('.topbar');
     const header = $('header');
@@ -228,6 +239,7 @@
   renderFooterLinks();
   updateLegacyHostingLinks();
   updateLegacyCloudLinks();
+  updateLegacyServerLinks();
 
   function updateActiveSubnav() {
     const links = $$('.product-subnav a');
@@ -455,7 +467,7 @@
   if (searchDialog && searchDialogTitle && searchDialogBody) {
     $$('[data-search]', header || document).forEach(button => button.addEventListener('click', () => {
       searchDialogTitle.textContent = 'Найдите свой продукт';
-      searchDialogBody.innerHTML = '<div class="search-results"><a href="domain-registration.html#top">Домены →</a><a href="virtual-hosting.html#plans">Хостинг →</a><a href="vps-hosting.html#plans">VPS →</a><a href="entra-dedicated.html#catalog">Выделенные серверы →</a><a href="entra-mail.html">Корпоративная почта →</a><a href="entra-vpn.html#armenia">VPN →</a></div>';
+      searchDialogBody.innerHTML = '<div class="search-results"><a href="domain-registration.html#top">Домены →</a><a href="virtual-hosting.html#plans">Хостинг →</a><a href="vps-hosting.html#plans">VPS →</a><a href="dedicated-server.html#catalog">Выделенные серверы →</a><a href="entra-mail.html">Корпоративная почта →</a><a href="entra-vpn.html#armenia">VPN →</a></div>';
       searchDialog.showModal();
     }));
   }

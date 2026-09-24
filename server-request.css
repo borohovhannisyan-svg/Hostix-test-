@@ -1,0 +1,18 @@
+.server-request-dialog{width:min(600px,calc(100% - 32px));max-height:90vh;overflow:auto;padding:36px;border:1px solid var(--line,#e3dae9);border-radius:22px;color:var(--ink,#20152f);background:#fff}
+.server-request-dialog::backdrop{background:#17152280}
+.server-request-dialog .dialog-close{position:absolute;right:18px;top:18px}
+.server-request-dialog h2{margin:0 38px 10px 0;font-size:30px;line-height:1.18;text-align:left}
+.server-request-intro{margin:0;color:var(--muted,#746a7d);font-size:16px;line-height:1.6}
+.server-request-form{display:grid;gap:16px;margin-top:26px}
+.server-request-field{display:grid;gap:8px}
+.server-request-field label{color:#33263f;font-size:15px;line-height:1.4;font-weight:700}
+.server-request-field input,.server-request-field textarea{display:block;width:100%;box-sizing:border-box;border:1px solid #d9cee5;border-radius:10px;background:#fff;color:#20152f;font:inherit;font-size:16px;line-height:1.4}
+.server-request-field input{min-height:48px;padding:0 13px}
+.server-request-field textarea{min-height:122px;padding:12px 13px;resize:vertical}
+.server-request-field input:focus-visible,.server-request-field textarea:focus-visible{outline:2px solid var(--purple,#7040c7);outline-offset:2px;border-color:transparent}
+.server-request-form .btn{min-height:50px;margin-top:4px;font-size:16px}
+.server-request-form .btn:disabled{opacity:.6;cursor:wait}
+.server-request-status{min-height:24px;margin:16px 0 0;color:#51445d;font-size:15px;line-height:1.55}
+.server-request-status a{color:var(--purple,#7040c7);font-weight:700;text-decoration:underline}
+.server-request-dialog [hidden]{display:none!important}
+@media(max-width:600px){.server-request-dialog{padding:28px 20px}.server-request-dialog h2{font-size:26px}.server-request-field input{min-height:50px}}
