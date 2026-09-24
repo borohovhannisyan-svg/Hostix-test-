@@ -30,9 +30,10 @@
       ['i-wrench', 'Сервер для 1С', '1c-server.html']
     ],
     vpn: [
-      ['i-shield-check', 'VPN в Армении', 'entra-vpn.html#armenia'],
-      ['i-globe', 'VPN в Европе', 'entra-vpn.html#europe'],
-      ['i-network', 'Сервер для VPN', 'entra-vpn.html#server']
+      ['i-shield-check', 'VPN в Армении', 'vpn-armenia.html'],
+      ['i-globe', 'VPN в Европе', 'vpn-europe.html'],
+      ['i-network', 'Сервер для VPN', 'vpn-server.html'],
+      ['i-users', 'Корпоративный VPN', 'corporate-vpn.html']
     ],
     services: [
       ['i-wrench', 'Техническое сопровождение проекта', 'entra-services.html#support'],
@@ -179,6 +180,19 @@
     });
   }
 
+  function updateLegacyVpnLinks() {
+    const destinations = {
+      europe: 'vpn-europe.html',
+      server: 'vpn-server.html',
+      corporate: 'corporate-vpn.html'
+    };
+    $$('a[href*="entra-vpn.html"]').forEach(link => {
+      const href = link.getAttribute('href') || '';
+      const hash = href.split('#')[1] || '';
+      link.setAttribute('href', destinations[hash] || 'vpn-armenia.html');
+    });
+  }
+
   function renderShell() {
     const topbar = $('.topbar');
     const header = $('header');
@@ -240,6 +254,7 @@
   updateLegacyHostingLinks();
   updateLegacyCloudLinks();
   updateLegacyServerLinks();
+  updateLegacyVpnLinks();
 
   function updateActiveSubnav() {
     const links = $$('.product-subnav a');
@@ -467,7 +482,7 @@
   if (searchDialog && searchDialogTitle && searchDialogBody) {
     $$('[data-search]', header || document).forEach(button => button.addEventListener('click', () => {
       searchDialogTitle.textContent = 'Найдите свой продукт';
-      searchDialogBody.innerHTML = '<div class="search-results"><a href="domain-registration.html#top">Домены →</a><a href="virtual-hosting.html#plans">Хостинг →</a><a href="vps-hosting.html#plans">VPS →</a><a href="dedicated-server.html#catalog">Выделенные серверы →</a><a href="entra-mail.html">Корпоративная почта →</a><a href="entra-vpn.html#armenia">VPN →</a></div>';
+      searchDialogBody.innerHTML = '<div class="search-results"><a href="domain-registration.html#top">Домены →</a><a href="virtual-hosting.html#plans">Хостинг →</a><a href="vps-hosting.html#plans">VPS →</a><a href="dedicated-server.html#catalog">Выделенные серверы →</a><a href="entra-mail.html">Корпоративная почта →</a><a href="vpn-armenia.html">VPN →</a></div>';
       searchDialog.showModal();
     }));
   }
