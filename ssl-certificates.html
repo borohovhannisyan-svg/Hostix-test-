@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="index,follow">
+<title>SSL-сертификаты для сайта — DV, OV, EV, Wildcard | ENTRA</title>
+<meta name="description" content="SSL-сертификаты для защиты сайтов, интернет-магазинов и корпоративных сервисов. DV, OV, EV, Wildcard и Multi-domain SSL с помощью в выборе и установке.">
+<link rel="canonical" href="https://entra.am/ssl-certificates.html">
+<link href="homepage.css" rel="stylesheet">
+<link href="revision.css" rel="stylesheet">
+<link href="revision3.css" rel="stylesheet">
+<link href="domains-v4.css" rel="stylesheet">
+<link href="ssl-certificates.css" rel="stylesheet">
+<link href="site-shell.css" rel="stylesheet">
+</head>
+<body data-page-version="ssl-v1">
+<svg aria-hidden="true" height="0" style="position:absolute" width="0"><defs>
+<symbol id="i-news" viewBox="0 0 24 24"><rect height="16" rx="1.5" width="18" x="3" y="4"></rect><path d="M7 8h10M7 12h10M7 16h6"></path></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"></circle><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"></path><circle cx="17" cy="9" r="2.4"></circle><path d="M15.5 14.2c2.6.4 4.5 2.6 4.5 5.3"></path></symbol>
+<symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5.5C4 4.7 4.7 4 5.5 4H12v16H5.5c-.8 0-1.5-.7-1.5-1.5z"></path><path d="M20 5.5c0-.8-.7-1.5-1.5-1.5H12v16h6.5c.8 0 1.5-.7 1.5-1.5z"></path></symbol>
+<symbol id="i-briefcase" viewBox="0 0 24 24"><rect height="12" rx="1.5" width="18" x="3" y="8"></rect><path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></symbol>
+<symbol id="i-gauge" viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"></circle><path d="M12 13l4-4M8 13a4 4 0 0 1 4-4M12 3v2M4 13H2M22 13h-2"></path></symbol>
+<symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v9A1.5 1.5 0 0 1 18.5 16H9l-4 4v-4H5.5A1.5 1.5 0 0 1 4 14.5z"></path></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M6 3h3l1.5 4.5-2 1.5a11 11 0 0 0 6.5 6.5l1.5-2L21 15v3a2 2 0 0 1-2 2C11.8 20 4 12.2 4 5a2 2 0 0 1 2-2z"></path></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect height="14" rx="1.5" width="18" x="3" y="5"></rect><path d="M3.5 6l8.5 7 8.5-7"></path></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M3.5 12h17M12 3.5c2.5 2.4 3.8 5.3 3.8 8.5s-1.3 6.1-3.8 8.5c-2.5-2.4-3.8-5.3-3.8-8.5S9.5 5.9 12 3.5z"></path></symbol>
+<symbol id="i-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="M20 20l-4.8-4.8"></path></symbol>
+<symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"></path></symbol>
+<symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"></path></symbol>
+<symbol id="i-shield-check" viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"></path><path d="M9.3 12l1.9 1.9L15 10"></path></symbol>
+<symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.5 3.5a4.5 4.5 0 0 0-6 4.6L3 13.5 6.5 17l5.4-5.4a4.5 4.5 0 0 0 5.6-5.6l-3 3-2-2z"></path></symbol>
+<symbol id="i-network" viewBox="0 0 24 24"><path d="M4 18v-3M9 18v-6M14 18v-9M19 18V6"></path></symbol>
+<symbol id="i-send" viewBox="0 0 24 24"><path d="M3 11l17-7-7 17-3-7-7-3z"></path></symbol>
+<symbol id="i-ticket" viewBox="0 0 24 24"><path d="M3 9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v1.5a1.5 1.5 0 0 0 0 3V15a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1.5a1.5 1.5 0 0 0 0-3z"></path><path d="M9 7.5v9" stroke-dasharray="2.2 2.2"></path></symbol>
+<symbol id="i-headset" viewBox="0 0 24 24"><path d="M4 13v-1a8 8 0 0 1 16 0v1"></path><rect height="6" rx="1.5" width="4" x="3" y="13"></rect><rect height="6" rx="1.5" width="4" x="17" y="13"></rect><path d="M20 19v1a3 3 0 0 1-3 3h-3"></path></symbol>
+<symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="15" rx="1.3"></rect><circle cx="8.5" cy="9.5" r="1.6"></circle><path d="M4 17l5-5 4 4 3-3 4 4"></path></symbol>
+</defs></svg>
+<div class="topbar"></div><header></header>
+<main id="top">
+<section class="domain-hero ssl-hero">
+<div aria-hidden="true" class="domain-pattern"></div>
+<div class="wrap domain-hero-inner ssl-hero-inner">
+<div class="eyebrow hero-label"><span class="status-dot"></span> SSL-СЕРТИФИКАТЫ ENTRA</div>
+<h1>SSL-сертификаты <em>для защиты сайта</em></h1>
+<p>SSL шифрует данные между сайтом и посетителем. Выберите сертификат для одного домена, компании, поддоменов или нескольких сайтов.</p>
+<div class="ssl-hero-actions"><a class="btn" href="#catalog">Выбрать сертификат <svg class="icon"><use href="#i-arrow-right"></use></svg></a><a class="btn outline" href="#compare">Помочь с выбором</a></div>
+<div class="ssl-brandline"><span>Sectigo</span><span>RapidSSL</span><span>Thawte</span><span>GeoTrust</span><span>DigiCert</span></div>
+</div>
+</section>
+
+<section class="wrap section ssl-catalog" id="catalog">
+<div class="ssl-heading-row"><div><div class="eyebrow">КАТАЛОГ SSL</div><h2>Сертификаты <em>под разные задачи</em></h2></div><p>Начните с типа проверки. Полный ассортимент можно открыть после основных вариантов.</p></div>
+<div class="ssl-type-tabs" role="tablist" aria-label="Тип SSL-сертификата">
+<button class="ssl-filter active" data-ssl-filter="all" role="tab" aria-selected="true">Все</button>
+<button class="ssl-filter" data-ssl-filter="dv" role="tab" aria-selected="false">DV <small>Для сайта</small></button>
+<button class="ssl-filter" data-ssl-filter="ov" role="tab" aria-selected="false">OV <small>Для компании</small></button>
+<button class="ssl-filter" data-ssl-filter="ev" role="tab" aria-selected="false">EV <small>Максимум доверия</small></button>
+<button class="ssl-filter" data-ssl-filter="wildcard" role="tab" aria-selected="false">Wildcard <small>С поддоменами</small></button>
+<button class="ssl-filter" data-ssl-filter="multi" role="tab" aria-selected="false">Multi-domain <small>Несколько доменов</small></button>
+</div>
+<div class="ssl-product-grid" id="ssl-product-grid">
+<article class="ssl-card recommended" data-ssl-type="dv"><div class="ssl-card-copy"><div class="ssl-card-top"><span class="ssl-brand">Sectigo</span><span class="ssl-recommended">Рекомендуем</span></div><h3>PositiveSSL</h3><p>Для сайта, лендинга или блога</p></div><span class="ssl-badge">DV</span><ul><li>Проверка домена</li><li>1 домен</li><li>Без документов</li></ul><div class="ssl-card-bottom"><div><small>от</small><strong>$1.27</strong><span>/ мес.</span></div><button class="btn outline small" data-ssl-order="Sectigo PositiveSSL">Выбрать</button></div></article>
+<article class="ssl-card" data-ssl-type="dv"><div class="ssl-card-copy"><span class="ssl-brand">GoGetSSL</span><h3>GGSSL Domain SSL</h3><p>Базовая защита одного домена</p></div><span class="ssl-badge">DV</span><ul><li>Проверка домена</li><li>1 домен</li><li>Экономичный вариант</li></ul><div class="ssl-card-bottom"><div><small>от</small><strong>$0.74</strong><span>/ мес.</span></div><button class="btn outline small" data-ssl-order="GGSSL Domain SSL">Выбрать</button></div></article>
+<article class="ssl-card" data-ssl-type="dv"><div class="ssl-card-copy"><span class="ssl-brand">RapidSSL</span><h3>RapidSSL Standard</h3><p>Сертификат узнаваемого центра</p></div><span class="ssl-badge">DV</span><ul><li>Проверка домена</li><li>1 домен</li><li>Быстрый выпуск</li></ul><div class="ssl-card-bottom"><div><small>от</small><strong>$1.95</strong><span>/ мес.</span></div><button class="btn outline small" data-ssl-order="RapidSSL Standard">Выбрать</button></div></article>
+<article class="ssl-card" data-ssl-type="dv"><div class="ssl-card-copy"><span class="ssl-brand">Sectigo</span><h3>Essential SSL</h3><p>Для коммерческого сайта</p></div><span class="ssl-badge">DV</span><ul><li>Проверка домена</li><li>1 домен</li><li>Для малого бизнеса</li></ul><div class="ssl-card-bottom"><div><small>от</small><strong>$2.61</strong><span>/ мес.</span></div><button class="btn outline small" data-ssl-order="Sectigo Essential SSL">Выбрать</button></div></article>
+<article class="ssl-card" data-ssl-type="ov"><div class="ssl-card-copy"><span class="ssl-brand">GoGetSSL</span><h3>BusinessTrust</h3><p>Для сайта компании</p></div><span class="ssl-badge">OV</span><ul><li>Проверка компании</li><li>1 домен</li><li>Больше доверия</li></ul><div class="ssl-card-bottom"><div><small>от</small><strong>$5.61</strong><span>/ мес.</span></div><button class="btn outline small" data-ssl-order="GoGetSSL BusinessTrust">Выбрать</button></div></article>
+<article class="ssl-card" data-ssl-type="ov"><div class="ssl-card-copy"><span class="ssl-brand">GeoTrust</span><h3>TrueBusinessID</h3><p>Корпоративный SSL</p></div><span class="ssl-badge">OV</span><ul><li>Проверка компании</li><li>1 домен</li><li>Известный бренд</li></ul><div class="ssl-card-bottom"><div><small>от</small><strong>$15.47</strong><span>/ мес.</span></div><button class="btn outline small" data-ssl-order="GeoTrust TrueBusinessID">Выбрать</button></div></article>
+<article class="ssl-card ssl-extra" data-ssl-type="ev" hidden><div class="ssl-card-copy"><span class="ssl-brand">GoGetSSL</span><h3>BusinessTrust EV</h3><p>Для сервисов и платежей</p></div><span class="ssl-badge">EV</span><ul><li>Расширенная проверка</li><li>1 домен</li><li>Максимум доверия</li></ul><div class="ssl-card-bottom"><div><small>от</small><strong>$11.55</strong><span>/ мес.</span></div><button class="btn outline small" data-ssl-order="GoGetSSL BusinessTrust EV">Выбрать</button></div></article>
+<article class="ssl-card ssl-extra" data-ssl-type="ev" hidden><div class="ssl-card-copy"><span class="ssl-brand">Sectigo</span><h3>PositiveSSL EV</h3><p>Для бизнеса и транзакций</p></div><span class="ssl-badge">EV</span><ul><li>Расширенная проверка</li><li>1 домен</li><li>Повышенное доверие</li></ul><div class="ssl-card-bottom"><div><small>от</small><strong>$15.36</strong><span>/ мес.</span></div><button class="btn outline small" data-ssl-order="Sectigo PositiveSSL EV">Выбрать</button></div></article>
+<article class="ssl-card ssl-extra" data-ssl-type="wildcard" hidden><div class="ssl-card-copy"><span class="ssl-brand">GoGetSSL</span><h3>GGSSL Wildcard SSL</h3><p>Домен и все поддомены</p></div><span class="ssl-badge">Wildcard</span><ul><li>Домен + поддомены</li><li>DV-проверка</li><li>Единое управление</li></ul><div class="ssl-card-bottom"><div><small>от</small><strong>$7.43</strong><span>/ мес.</span></div><button class="btn outline small" data-ssl-order="GGSSL Wildcard SSL">Выбрать</button></div></article>
+<article class="ssl-card ssl-extra" data-ssl-type="wildcard" hidden><div class="ssl-card-copy"><span class="ssl-brand">Sectigo</span><h3>PositiveSSL Wildcard</h3><p>Для структуры поддоменов</p></div><span class="ssl-badge">Wildcard</span><ul><li>Домен + поддомены</li><li>DV-проверка</li><li>Быстрый выпуск</li></ul><div class="ssl-card-bottom"><div><small>от</small><strong>$13.34</strong><span>/ мес.</span></div><button class="btn outline small" data-ssl-order="Sectigo PositiveSSL Wildcard">Выбрать</button></div></article>
+<article class="ssl-card ssl-extra" data-ssl-type="multi" hidden><div class="ssl-card-copy"><span class="ssl-brand">GoGetSSL</span><h3>Multi-Domain SSL</h3><p>Несколько доменов и проектов</p></div><span class="ssl-badge">SAN</span><ul><li>Несколько доменов</li><li>DV-проверка</li><li>Единое продление</li></ul><div class="ssl-card-bottom"><div><small>от</small><strong>$2.48</strong><span>/ мес.</span></div><button class="btn outline small" data-ssl-order="GGSSL Multi-Domain SSL">Выбрать</button></div></article>
+<article class="ssl-card ssl-extra" data-ssl-type="multi" hidden><div class="ssl-card-copy"><span class="ssl-brand">Sectigo</span><h3>PositiveSSL Multi-Domain</h3><p>Несколько сайтов одним SSL</p></div><span class="ssl-badge">SAN</span><ul><li>Несколько доменов</li><li>DV-проверка</li><li>Гибкое число SAN</li></ul><div class="ssl-card-bottom"><div><small>от</small><strong>$3.36</strong><span>/ мес.</span></div><button class="btn outline small" data-ssl-order="Sectigo PositiveSSL Multi-Domain">Выбрать</button></div></article>
+</div>
+<div class="ssl-more"><button class="btn outline" id="show-all-ssl">Показать весь каталог <svg class="icon"><use href="#i-chevron"></use></svg></button><small>Цены показаны в USD по текущему каталогу. Финальная стоимость отображается при оформлении.</small></div>
+</section>
+
+<section class="ssl-compare section" id="compare"><div class="wrap">
+<div class="section-copy centered-copy"><div class="eyebrow">КАКОЙ SSL ВЫБРАТЬ</div><h2>От задачи — <em>к сертификату</em></h2><p>Уровень шифрования сопоставим. Отличаются способ проверки, количество доменов и уровень подтверждённого доверия.</p></div>
+<div class="ssl-compare-grid">
+<article><span>01</span><strong>DV</strong><h3>Сайт или лендинг</h3><p>Быстрый выпуск без проверки документов компании.</p><button data-pick-type="dv">Показать DV →</button></article>
+<article><span>02</span><strong>OV</strong><h3>Сайт компании</h3><p>Подтверждает юридическое лицо вместе с доменом.</p><button data-pick-type="ov">Показать OV →</button></article>
+<article><span>03</span><strong>EV</strong><h3>Финансы и платежи</h3><p>Расширенная проверка для максимального доверия.</p><button data-pick-type="ev">Показать EV →</button></article>
+<article><span>04</span><strong>* / SAN</strong><h3>Сложная структура</h3><p>Wildcard для поддоменов, SAN — для разных доменов.</p><button data-pick-type="wildcard">Показать варианты →</button></article>
+</div>
+</div></section>
+
+<section class="wrap section ssl-benefits"><div class="ssl-heading-row"><div><div class="eyebrow">БЕЗОПАСНОСТЬ И ДОВЕРИЕ</div><h2>Что даёт <em>SSL-сертификат</em></h2></div></div><div class="why-grid">
+<article class="why-card metal-card"><div class="why-icon"><svg class="icon"><use href="#i-shield-check"></use></svg></div><h3>Шифрование данных</h3><p>Логины, формы и платежные данные передаются по защищённому соединению.</p></article>
+<article class="why-card metal-card"><div class="why-icon"><svg class="icon"><use href="#i-users"></use></svg></div><h3>Доверие посетителей</h3><p>Браузер показывает защищённое HTTPS-соединение без предупреждений.</p></article>
+<article class="why-card metal-card"><div class="why-icon"><svg class="icon"><use href="#i-globe"></use></svg></div><h3>Основа для SEO</h3><p>HTTPS — базовое техническое требование для современного сайта.</p></article>
+<article class="why-card metal-card"><div class="why-icon"><svg class="icon"><use href="#i-wrench"></use></svg></div><h3>Помощь с установкой</h3><p>Поможем выпустить, установить и проверить сертификат на сервере.</p></article>
+</div></section>
+
+<section class="wrap section ssl-process"><div class="section-copy centered-copy"><div class="eyebrow">ПОДКЛЮЧЕНИЕ</div><h2>От заказа до <em>защищённого сайта</em></h2></div><div class="ssl-process-grid"><article><b>1</b><h3>Выберите SSL</h3><p>По типу сайта, организации и количеству доменов.</p></article><article><b>2</b><h3>Пройдите проверку</h3><p>Подтвердите домен или данные компании — в зависимости от типа.</p></article><article><b>3</b><h3>Получите сертификат</h3><p>Центр сертификации выпускает SSL после подтверждения.</p></article><article><b>4</b><h3>Установите</h3><p>Подключите HTTPS самостоятельно или передайте задачу ENTRA.</p></article></div></section>
+
+<section class="wrap section ssl-transfer" id="transfer"><div class="feature-transfer-wide metal-card"><div class="feature-copy"><div class="eyebrow">ДОМЕНЫ ENTRA</div><h3>Перенесите домен<br>в ENTRA</h3><p>Управляйте доменом, SSL, хостингом и почтой в одной инфраструктуре.</p><a class="btn" href="domain-registration.html#transfer">Условия переноса <svg class="icon"><use href="#i-arrow-right"></use></svg></a></div><div class="transfer-benefits"><span><svg class="icon"><use href="#i-shield-check"></use></svg>Бесплатный хостинг на год</span><span><svg class="icon"><use href="#i-shield-check"></use></svg>Базовый SSL</span><span><svg class="icon"><use href="#i-shield-check"></use></svg>Перенос сайта и почты</span><span><svg class="icon"><use href="#i-shield-check"></use></svg>DNS и DDoS-защита</span></div><div class="ssl-transfer-art" aria-hidden="true"><div class="mini-domain">your-domain.am</div><span>→</span><div class="mini-entra">ENTRA</div></div></div></section>
+
+<section class="ssl-related section"><div class="wrap"><div class="section-copy centered-copy"><div class="eyebrow">ЕДИНАЯ ИНФРАСТРУКТУРА</div><h2>После SSL — <em>всё остальное</em></h2><p>Подключайте сертификат к домену, хостингу и корпоративной почте в ENTRA.</p></div><div class="ssl-related-grid"><a href="domain-registration.html"><svg class="icon"><use href="#i-globe"></use></svg><span><strong>Регистрация домена</strong><small>.am, .հայ и международные зоны</small></span>↗</a><a href="entra-hosting.html"><svg class="icon"><use href="#i-network"></use></svg><span><strong>Хостинг</strong><small>Сайт, SSL и управление в cPanel</small></span>↗</a><a href="entra-mail.html"><svg class="icon"><use href="#i-mail"></use></svg><span><strong>Корпоративная почта</strong><small>Адреса на собственном домене</small></span>↗</a></div></div></section>
+
+<section class="wrap section domain-faq" id="faq"><div class="section-copy centered-copy"><div class="eyebrow">FAQ</div><h2>Вопросы <em>об SSL</em></h2><p>Коротко о выпуске, установке и выборе сертификата.</p></div><div class="faq-list">
+<details class="faq-item metal-card" open><summary>Какой SSL подойдёт для обычного сайта?<span>+</span></summary><p>Для информационного сайта, блога или лендинга обычно достаточно DV-сертификата: он подтверждает владение доменом и быстро выпускается.</p></details>
+<details class="faq-item metal-card"><summary>Чем OV и EV отличаются от DV?<span>+</span></summary><p>OV дополнительно проверяет организацию, а EV предполагает расширенную проверку компании. Они подходят там, где особенно важно подтверждённое доверие.</p></details>
+<details class="faq-item metal-card"><summary>Когда нужен Wildcard?<span>+</span></summary><p>Wildcard защищает основной домен и его поддомены, например site.am, shop.site.am и account.site.am.</p></details>
+<details class="faq-item metal-card"><summary>Можно ли защитить несколько доменов одним SSL?<span>+</span></summary><p>Да. Для этого используется Multi-domain или SAN-сертификат. Количество поддерживаемых доменов зависит от продукта.</p></details>
+<details class="faq-item metal-card"><summary>Поможет ли ENTRA установить сертификат?<span>+</span></summary><p>Да. Мы можем помочь с выпуском, установкой, проверкой HTTPS и настройкой автоматического перенаправления.</p></details>
+</div></section>
+
+<section class="contact section" id="contact"><div class="wrap"><h2>Подберём <em>SSL для вашего сайта</em></h2><p class="intro">Оставьте номер телефона — уточним задачу и поможем выбрать сертификат без переплаты.</p><form id="ssl-contact-form" novalidate><input type="hidden" id="ssl-interest" name="certificate" value="Консультация по SSL"><div class="contact-first"><label class="sr-only" for="ssl-phone">Номер телефона</label><input id="ssl-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Ваш номер телефона"><button class="btn" type="submit">Свяжитесь со мной →</button></div><p class="form-status" id="ssl-contact-status" role="status"></p></form></div></section>
+</main>
+<footer><div class="wrap"><div class="footer-top"><a class="brand" href="entra-homepage.html">ENTRA</a><p>Все облачные сервисы.<br>Одна инфраструктура.</p><a href="tel:+37460405060">+374 60 40 50 60<small>Пн–Пт · 10:00–19:00</small></a><a class="btn outline" href="https://amweb.am/login">Личный кабинет →</a></div><div class="footer-grid"><div><h3>Продукты</h3><a href="entra-hosting.html">Хостинг</a><a href="entra-vps.html">Облачные серверы</a><a href="entra-dedicated.html">Выделенные серверы</a><a href="entra-vpn.html">VPN</a><a href="entra-mail.html">Корпоративная почта</a><a href="domain-registration.html">Домен</a></div><div><h3>Серверы и инфраструктура</h3><a href="entra-dedicated.html">Dedicated</a><a href="entra-colocation.html">Colocation</a><a href="entra-cloud.html">Private Cloud</a><a href="entra-services.html#network">Сетевые услуги</a></div><div><h3>Услуги</h3><a href="entra-services.html#support">Администрирование</a><a href="entra-services.html#ddos">DDoS-защита</a><a href="ssl-certificates.html">SSL-сертификаты</a><a href="entra-services.html#storage">Резервное копирование</a></div><div><h3>Компания</h3><a href="entra-company.html">О компании</a><a href="entra-partners.html">Партнёрская программа</a><a href="entra-company.html#contacts">Контакты</a></div><div><h3>Поддержка</h3><a href="#contact">Связаться со специалистом</a><a href="entra-knowledge.html">База знаний</a><button data-info="Условия обслуживания">Условия обслуживания</button><button data-info="Политика конфиденциальности">Политика конфиденциальности</button></div></div><div class="footer-standards"><div class="pills"><span>TIER III / TIER II</span><span>DDoS-защита</span><span>ISO/IEC 27001</span><span>PCI DSS</span></div><span>Армения · Международная инфраструктура</span></div><div class="footer-bottom"><span>© 2026 Entra · ProITLab LLC. Все права защищены.</span><button data-info="Реквизиты компании">Реквизиты</button><button data-info="Политика cookie">Cookie</button><a href="#top">Наверх ↑</a></div></div></footer>
+<dialog id="shell-dialog"><button class="dialog-close" type="button" aria-label="Закрыть">×</button><div class="eyebrow">ENTRA</div><h2 id="shell-dialog-title"></h2><div id="shell-dialog-body"></div></dialog>
+<script src="site-shell.js"></script><script src="ssl-certificates.js"></script>
+</body>
+</html>

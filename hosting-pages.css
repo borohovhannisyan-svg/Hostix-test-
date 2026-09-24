@@ -1,0 +1,24 @@
+.hosting-product-hero{padding:72px 0 50px;text-align:center;border-bottom:1px solid #eee7f2;background:#fff}
+.hosting-product-hero .wrap{max-width:940px}
+.hosting-product-hero h1{max-width:900px;margin:16px auto 18px;font-size:52px;line-height:1.08;letter-spacing:-.05em}
+.hosting-product-hero h1 em{font-style:normal;color:var(--purple)}
+.hosting-product-hero .hosting-subtitle{max-width:720px;margin:0 auto;font-size:16px;line-height:1.7}
+.hosting-product-hero .billing-toolbar{justify-content:center;margin-top:28px}
+.hosting-product-page .hosting-heading>p{max-width:720px;margin:12px auto 0;color:var(--muted);font-size:14px;line-height:1.7;text-align:center}
+.hosting-product-page .plan-grid.standard{grid-template-columns:repeat(4,minmax(0,1fr))}
+.hosting-product-page .plan-grid.premium{grid-template-columns:repeat(3,minmax(0,1fr));max-width:1040px;margin-inline:auto}
+.hosting-product-page .plan-head p,.hosting-product-page .plan-specs li,.hosting-product-page .plan-main-spec span{font-size:14px;line-height:1.55}
+.hosting-product-page .plan-price .old-price,.hosting-product-page .plan-price .price-period,.hosting-product-page .plan-price .price-saving{font-size:13px;line-height:1.45}
+.hosting-product-page .plan-note{font-size:14px}
+.hosting-product-page .include-card p,.hosting-product-page .why-card p,.hosting-product-page .related-card p{font-size:14px;line-height:1.65}
+.hosting-product-page .include-card h3,.hosting-product-page .why-card h3,.hosting-product-page .related-card h3{font-size:17px}
+.hosting-product-page .migration-content p{font-size:14px}
+.hosting-product-page .migration-list span{font-size:14px}
+.hosting-product-page .faq-answer{font-size:14px;line-height:1.7}
+.hosting-page-links{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.hosting-page-links a{min-height:118px;padding:22px;border:1px solid #e3dae9;border-radius:16px;background:#fff;display:flex;flex-direction:column;justify-content:space-between;gap:12px}
+.hosting-page-links strong{font-size:17px}
+.hosting-page-links span{font-size:14px;line-height:1.5;color:var(--muted)}
+.hosting-page-links a[aria-current="page"]{border-color:#a981d5;background:#f6f0fb}
+@media(max-width:1160px){.hosting-product-page .plan-grid.standard{grid-template-columns:repeat(2,1fr)}.hosting-page-links{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:760px){.hosting-product-hero{padding:48px 0 40px}.hosting-product-hero h1{font-size:37px}.hosting-product-page .plan-grid.standard,.hosting-product-page .plan-grid.premium,.hosting-page-links{grid-template-columns:1fr}.hosting-page-links a{min-height:96px}}

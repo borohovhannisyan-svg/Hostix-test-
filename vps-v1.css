@@ -50,6 +50,17 @@ body[data-page-version="vps-v1"]{background:#fff}.vps-section{padding-top:72px;p
   .vps-plan-grid::-webkit-scrollbar{display:none}
   .vps-plan{flex:0 0 min(78vw,390px);scroll-snap-align:start}
 }
+
+/* Readable VPS tariff cards: keep ENTRA layout, strengthen the numbers. */
+.vps-plan .plan-title span{font-size:23px;line-height:1.2}
+.vps-plan .plan-title small{font-size:13px;line-height:1.35;color:#74677f}
+.vps-spec-line{grid-template-columns:105px minmax(0,1fr);min-height:60px}
+.vps-spec-line span{font-size:14px;line-height:1.4;color:#746a7d}
+.vps-spec-line strong{font-size:16px;line-height:1.35;font-weight:800;color:#21142d}
+.vps-plan .plan-price strong{font-size:34px;font-weight:800}
+.vps-plan .plan-price>span{font-size:14px;color:#71657d}
+.vps-plan .btn{font-size:16px;min-height:48px}
+.plans-note{font-size:14px;line-height:1.55}
 @media(max-width:760px){
   .vps-hero{padding-top:48px;padding-bottom:42px}
   .vps-hero-copy h1{font-size:39px}

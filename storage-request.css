@@ -1,0 +1,19 @@
+.storage-request-dialog{width:min(600px,calc(100% - 32px));max-height:90vh;overflow:auto;padding:36px;border:1px solid var(--line,#e3dae9);border-radius:22px;color:var(--ink,#20152f);background:#fff}
+.storage-request-dialog::backdrop{background:#17152280}
+.storage-request-dialog .dialog-close{position:absolute;right:18px;top:18px}
+.storage-request-dialog h2{font-size:30px;line-height:1.18;text-align:left;margin:0 38px 10px 0}
+.storage-request-intro{font-size:16px;line-height:1.6;color:var(--muted,#746a7d);margin:0}
+.storage-request-form{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px}
+.storage-request-field{display:grid;gap:8px}
+.storage-request-field.full{grid-column:1/-1}
+.storage-request-field label{font-size:15px;line-height:1.4;font-weight:700;color:#33263f}
+.storage-request-field input,.storage-request-field select,.storage-request-field textarea{display:block;width:100%;box-sizing:border-box;border:1px solid #d9cee5;border-radius:10px;background:#fff;color:#20152f;font:inherit;font-size:16px;line-height:1.4}
+.storage-request-field input,.storage-request-field select{min-height:48px;padding:0 13px}
+.storage-request-field textarea{min-height:104px;padding:12px 13px;resize:vertical}
+.storage-request-field input:focus-visible,.storage-request-field select:focus-visible,.storage-request-field textarea:focus-visible{outline:2px solid var(--purple,#7040c7);outline-offset:2px;border-color:transparent}
+.storage-request-form .btn{grid-column:1/-1;min-height:50px;font-size:16px;margin-top:4px}
+.storage-request-form .btn:disabled{opacity:.6;cursor:wait}
+.storage-request-status{min-height:24px;margin:16px 0 0;font-size:15px;line-height:1.55;color:#51445d}
+.storage-request-status a{color:var(--purple,#7040c7);font-weight:700;text-decoration:underline}
+.storage-request-dialog [hidden]{display:none!important}
+@media(max-width:600px){.storage-request-dialog{padding:28px 20px}.storage-request-dialog h2{font-size:26px}.storage-request-form{grid-template-columns:1fr}.storage-request-field.full,.storage-request-form .btn{grid-column:1}.storage-request-field input,.storage-request-field select{min-height:50px}}

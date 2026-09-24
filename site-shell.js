@@ -7,44 +7,42 @@
 
   const menus = {
     domains: [
-      ['i-globe', 'Регистрация домена', 'entra-domains.html#top'],
-      ['i-send', 'Перенос домена — бесплатно', 'entra-domains.html#transfer'],
-      ['i-shield-check', 'Скрытая регистрация', 'entra-domains.html#why'],
-      ['i-shield-check', 'SSL-сертификат', 'entra-domains.html#infrastructure']
+      ['i-globe', 'Регистрация домена', 'domain-registration.html#top'],
+      ['i-shield-check', 'SSL-сертификаты', 'ssl-certificates.html#top']
     ],
     hosting: [
-      ['i-globe', 'Виртуальный хостинг', 'entra-hosting.html#standard'],
-      ['i-gauge', 'Премиум-хостинг', 'entra-hosting.html#premium'],
-      ['i-send', 'Перенос сайта — бесплатно', 'entra-hosting.html#migration'],
-      ['i-wrench', 'Хостинг для 1С-Битрикс', 'entra-hosting.html#cms-stack'],
-      ['i-image', 'Хостинг для WordPress', 'entra-hosting.html#wordpress']
+      ['i-globe', 'Виртуальный хостинг', 'virtual-hosting.html#plans'],
+      ['i-gauge', 'Премиум-хостинг', 'premium-hosting.html#plans'],
+      ['i-wrench', 'Хостинг для 1С-Битрикс', '1c-bitrix-hosting.html#plans'],
+      ['i-image', 'Хостинг для WordPress', 'wordpress-hosting.html#plans']
     ],
     cloud: [
-      ['i-network', 'VPS', 'entra-vps.html#plans'],
-      ['i-briefcase', 'Виртуальные рабочие столы Windows', 'entra-cloud.html#desktops'],
-      ['i-gauge', 'Облачная база данных', 'entra-cloud.html#database'],
-      ['i-image', 'Облачное хранилище S3', 'entra-cloud.html#s3'],
-      ['i-send', 'Облачное хранилище FTP', 'entra-cloud.html#ftp']
+      ['i-network', 'VPS', 'vps-hosting.html#plans'],
+      ['i-briefcase', 'Рабочие столы Windows', 'windows-desktop.html'],
+      ['i-gauge', 'Облачная база данных', 'cloud-database.html'],
+      ['i-image', 'Облачное хранилище S3', 's3-storage.html'],
+      ['i-send', 'Облачное хранилище FTP', 'ftp-storage.html']
     ],
     server: [
-      ['i-briefcase', 'Выделенный сервер', 'entra-dedicated.html#catalog'],
-      ['i-network', 'Коллокация сервера', 'entra-colocation.html#colocation'],
-      ['i-users', 'Выделенные рабочие столы Windows', 'entra-dedicated.html#enterprise-solutions'],
-      ['i-wrench', 'Сервер для 1С', 'entra-dedicated.html#enterprise-solutions']
+      ['i-briefcase', 'Выделенный сервер', 'dedicated-server.html#catalog'],
+      ['i-network', 'Колокация сервера', 'server-colocation.html'],
+      ['i-users', 'Выделенные рабочие столы Windows', 'windows-dedicated-desktop.html'],
+      ['i-wrench', 'Сервер для 1С', '1c-server.html']
     ],
     vpn: [
-      ['i-shield-check', 'VPN в Армении', 'entra-vpn.html#armenia'],
-      ['i-globe', 'VPN в Европе', 'entra-vpn.html#europe'],
-      ['i-network', 'Сервер для VPN', 'entra-vpn.html#server']
+      ['i-shield-check', 'VPN в Армении', 'vpn-armenia.html'],
+      ['i-globe', 'VPN в Европе', 'vpn-europe.html'],
+      ['i-network', 'Сервер для VPN', 'vpn-server.html'],
+      ['i-users', 'Корпоративный VPN', 'corporate-vpn.html']
     ],
     services: [
-      ['i-wrench', 'Техническое сопровождение проекта', 'entra-services.html#support'],
-      ['i-network', 'IPv4 / IPv6', 'entra-services.html#ip'],
-      ['i-globe', 'Сетевые услуги', 'entra-services.html#network'],
-      ['i-shield-check', 'Защита от DDoS', 'entra-services.html#ddos'],
-      ['i-mail', 'Корпоративный почтовый сервер', 'entra-services.html#mail-server'],
-      ['i-image', 'Хранение данных', 'entra-services.html#storage'],
-      ['i-briefcase', 'Создание инфраструктуры', 'entra-services.html#infrastructure']
+      ['i-wrench', 'Техническое сопровождение проекта', 'technical-support.html'],
+      ['i-network', 'IPv4 / IPv6', 'ip-addresses.html'],
+      ['i-globe', 'Сетевые услуги', 'network-services.html'],
+      ['i-shield-check', 'Защита от DDoS', 'ddos-protection.html'],
+      ['i-mail', 'Корпоративный почтовый сервер', 'corporate-mail-server.html'],
+      ['i-image', 'Хранение данных', 'data-storage.html'],
+      ['i-briefcase', 'Создание инфраструктуры', 'it-infrastructure.html']
     ]
   };
 
@@ -59,13 +57,14 @@
   ];
 
   const currentFile = (location.pathname.split('/').pop() || 'entra-homepage.html').toLowerCase();
-  const currentMenu = currentFile.includes('domains') ? 'domains'
-    : currentFile.includes('hosting') ? 'hosting'
-      : (currentFile.includes('vps') || currentFile.includes('cloud')) ? 'cloud'
-        : (currentFile.includes('dedicated') || currentFile.includes('colocation')) ? 'server'
-          : currentFile.includes('mail') ? 'mail'
+  const serviceFiles = new Set(['technical-support.html', 'ip-addresses.html', 'network-services.html', 'ddos-protection.html', 'corporate-mail-server.html', 'data-storage.html', 'it-infrastructure.html']);
+  const currentMenu = (currentFile.includes('domain') || currentFile.includes('ssl-certificates')) ? 'domains'
+    : (currentFile.includes('vps') || currentFile.includes('cloud') || currentFile.includes('windows-desktop') || currentFile.includes('s3-storage') || currentFile.includes('ftp-storage')) ? 'cloud'
+      : currentFile.includes('hosting') ? 'hosting'
+        : (currentFile.includes('dedicated') || currentFile.includes('colocation') || currentFile.includes('1c-server')) ? 'server'
+          : (currentFile.includes('mail') && !serviceFiles.has(currentFile)) ? 'mail'
             : currentFile.includes('vpn') ? 'vpn'
-              : currentFile.includes('services') ? 'services'
+              : (currentFile.includes('services') || serviceFiles.has(currentFile)) ? 'services'
                 : '';
 
   function makeMegaPanel(key) {
@@ -83,7 +82,7 @@
           <div class="mega-main">
             <div class="mega-items">${links}</div>
           </div>
-          <a class="mega-promo" href="entra-domains.html#top">
+          <a class="mega-promo" href="domain-registration.html#top">
             <strong>Ваш домен.<br>Хостинг в подарок.</strong>
             <p>Начните проект с готовой основы.</p>
             <span class="promo-link">Выбрать домен →</span>
@@ -133,6 +132,82 @@
   function renderFooterLinks() {
     $$('footer .footer-grid a').forEach(link => {
       if (link.textContent.trim() === 'Контакты') link.setAttribute('href', 'entra-company.html#contacts');
+    });
+  }
+
+  function updateLegacyHostingLinks() {
+    const destinations = {
+      premium: 'premium-hosting.html#plans',
+      wordpress: 'wordpress-hosting.html#plans',
+      'cms-stack': '1c-bitrix-hosting.html#plans'
+    };
+
+    $$('a[href*="entra-hosting.html"]').forEach(link => {
+      const href = link.getAttribute('href') || '';
+      const hash = href.split('#')[1] || 'standard';
+      link.setAttribute('href', destinations[hash] || 'virtual-hosting.html#plans');
+    });
+  }
+
+  function updateLegacyCloudLinks() {
+    const cloudDestinations = {
+      desktops: 'windows-desktop.html',
+      database: 'cloud-database.html',
+      s3: 's3-storage.html',
+      ftp: 'ftp-storage.html'
+    };
+
+    $$('a[href*="entra-cloud.html"]').forEach(link => {
+      const href = link.getAttribute('href') || '';
+      const hash = href.split('#')[1] || '';
+      link.setAttribute('href', cloudDestinations[hash] || 'vps-hosting.html');
+    });
+
+    $$('a[href*="entra-vps.html"]').forEach(link => {
+      const href = link.getAttribute('href') || '';
+      const hash = href.split('#')[1];
+      link.setAttribute('href', `vps-hosting.html${hash ? `#${hash}` : ''}`);
+    });
+  }
+
+  function updateLegacyServerLinks() {
+    $$('a[href*="entra-dedicated.html"]').forEach(link => {
+      const href = link.getAttribute('href') || '';
+      const hash = href.split('#')[1];
+      link.setAttribute('href', `dedicated-server.html${hash ? `#${hash}` : ''}`);
+    });
+    $$('a[href*="entra-colocation.html"]').forEach(link => {
+      link.setAttribute('href', 'server-colocation.html');
+    });
+  }
+
+  function updateLegacyVpnLinks() {
+    const destinations = {
+      europe: 'vpn-europe.html',
+      server: 'vpn-server.html',
+      corporate: 'corporate-vpn.html'
+    };
+    $$('a[href*="entra-vpn.html"]').forEach(link => {
+      const href = link.getAttribute('href') || '';
+      const hash = href.split('#')[1] || '';
+      link.setAttribute('href', destinations[hash] || 'vpn-armenia.html');
+    });
+  }
+
+  function updateLegacyServiceLinks() {
+    const destinations = {
+      support: 'technical-support.html',
+      ip: 'ip-addresses.html',
+      network: 'network-services.html',
+      ddos: 'ddos-protection.html',
+      'mail-server': 'corporate-mail-server.html',
+      storage: 'data-storage.html',
+      infrastructure: 'it-infrastructure.html'
+    };
+    $$('a[href*="entra-services.html"]').forEach(link => {
+      const href = link.getAttribute('href') || '';
+      const hash = href.split('#')[1] || '';
+      link.setAttribute('href', destinations[hash] || 'technical-support.html');
     });
   }
 
@@ -194,6 +269,23 @@
   renderShell();
   renderFooterLogo();
   renderFooterLinks();
+  updateLegacyHostingLinks();
+  updateLegacyCloudLinks();
+  updateLegacyServerLinks();
+  updateLegacyVpnLinks();
+  updateLegacyServiceLinks();
+
+  function updateActiveSubnav() {
+    const links = $$('.product-subnav a');
+    const matching = links.filter(link => new URL(link.href).pathname === location.pathname);
+    const active = matching.find(link => new URL(link.href).hash === location.hash) || matching[0];
+    links.forEach(link => {
+      if (link === active) link.setAttribute('aria-current', matching.length > 1 ? 'location' : 'page');
+      else link.removeAttribute('aria-current');
+    });
+  }
+  updateActiveSubnav();
+  addEventListener('hashchange', updateActiveSubnav);
 
   const header = $('header');
   const menuButtons = $$('[data-menu]', header || document);
@@ -409,8 +501,19 @@
   if (searchDialog && searchDialogTitle && searchDialogBody) {
     $$('[data-search]', header || document).forEach(button => button.addEventListener('click', () => {
       searchDialogTitle.textContent = 'Найдите свой продукт';
-      searchDialogBody.innerHTML = '<div class="search-results"><a href="entra-domains.html#top">Домены →</a><a href="entra-hosting.html#standard">Хостинг →</a><a href="entra-vps.html#plans">VPS →</a><a href="entra-dedicated.html#catalog">Выделенные серверы →</a><a href="entra-mail.html">Корпоративная почта →</a><a href="entra-vpn.html#armenia">VPN →</a></div>';
+      searchDialogBody.innerHTML = '<div class="search-results"><a href="domain-registration.html#top">Домены →</a><a href="virtual-hosting.html#plans">Хостинг →</a><a href="vps-hosting.html#plans">VPS →</a><a href="dedicated-server.html#catalog">Выделенные серверы →</a><a href="entra-mail.html">Корпоративная почта →</a><a href="vpn-armenia.html">VPN →</a></div>';
       searchDialog.showModal();
     }));
   }
+})();
+
+/* Shared header/footer revision loader. Page-specific content remains unchanged. */
+(() => {
+  const style = document.createElement('link');
+  style.rel = 'stylesheet';
+  style.href = 'homepage-header-update.css';
+  document.head.append(style);
+  const script = document.createElement('script');
+  script.src = 'homepage-header-update.js';
+  document.head.append(script);
 })();
