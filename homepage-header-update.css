@@ -1,5 +1,5 @@
 /* Shared header/footer revision. Page-specific content remains unchanged. */
-header .navlinks{gap:10px}
+header .navlinks{gap:30px}
 body#top header .entra-mainnav .navlinks{gap:30px}
 header .navlinks>button,header .navlinks>a.nav-direct{font-size:16px}
 .currency-switcher{position:relative;display:inline-flex;align-items:center;height:36px;z-index:90}
