@@ -36,13 +36,13 @@
       ['i-users', 'Корпоративный VPN', 'corporate-vpn.html']
     ],
     services: [
-      ['i-wrench', 'Техническое сопровождение проекта', 'entra-services.html#support'],
-      ['i-network', 'IPv4 / IPv6', 'entra-services.html#ip'],
-      ['i-globe', 'Сетевые услуги', 'entra-services.html#network'],
-      ['i-shield-check', 'Защита от DDoS', 'entra-services.html#ddos'],
-      ['i-mail', 'Корпоративный почтовый сервер', 'entra-services.html#mail-server'],
-      ['i-image', 'Хранение данных', 'entra-services.html#storage'],
-      ['i-briefcase', 'Создание инфраструктуры', 'entra-services.html#infrastructure']
+      ['i-wrench', 'Техническое сопровождение проекта', 'technical-support.html'],
+      ['i-network', 'IPv4 / IPv6', 'ip-addresses.html'],
+      ['i-globe', 'Сетевые услуги', 'network-services.html'],
+      ['i-shield-check', 'Защита от DDoS', 'ddos-protection.html'],
+      ['i-mail', 'Корпоративный почтовый сервер', 'corporate-mail-server.html'],
+      ['i-image', 'Хранение данных', 'data-storage.html'],
+      ['i-briefcase', 'Создание инфраструктуры', 'it-infrastructure.html']
     ]
   };
 
@@ -57,13 +57,14 @@
   ];
 
   const currentFile = (location.pathname.split('/').pop() || 'entra-homepage.html').toLowerCase();
+  const serviceFiles = new Set(['technical-support.html', 'ip-addresses.html', 'network-services.html', 'ddos-protection.html', 'corporate-mail-server.html', 'data-storage.html', 'it-infrastructure.html']);
   const currentMenu = (currentFile.includes('domain') || currentFile.includes('ssl-certificates')) ? 'domains'
     : (currentFile.includes('vps') || currentFile.includes('cloud') || currentFile.includes('windows-desktop') || currentFile.includes('s3-storage') || currentFile.includes('ftp-storage')) ? 'cloud'
       : currentFile.includes('hosting') ? 'hosting'
         : (currentFile.includes('dedicated') || currentFile.includes('colocation') || currentFile.includes('1c-server')) ? 'server'
-          : currentFile.includes('mail') ? 'mail'
+          : (currentFile.includes('mail') && !serviceFiles.has(currentFile)) ? 'mail'
             : currentFile.includes('vpn') ? 'vpn'
-              : currentFile.includes('services') ? 'services'
+              : (currentFile.includes('services') || serviceFiles.has(currentFile)) ? 'services'
                 : '';
 
   function makeMegaPanel(key) {
@@ -193,6 +194,23 @@
     });
   }
 
+  function updateLegacyServiceLinks() {
+    const destinations = {
+      support: 'technical-support.html',
+      ip: 'ip-addresses.html',
+      network: 'network-services.html',
+      ddos: 'ddos-protection.html',
+      'mail-server': 'corporate-mail-server.html',
+      storage: 'data-storage.html',
+      infrastructure: 'it-infrastructure.html'
+    };
+    $$('a[href*="entra-services.html"]').forEach(link => {
+      const href = link.getAttribute('href') || '';
+      const hash = href.split('#')[1] || '';
+      link.setAttribute('href', destinations[hash] || 'technical-support.html');
+    });
+  }
+
   function renderShell() {
     const topbar = $('.topbar');
     const header = $('header');
@@ -255,6 +273,7 @@
   updateLegacyCloudLinks();
   updateLegacyServerLinks();
   updateLegacyVpnLinks();
+  updateLegacyServiceLinks();
 
   function updateActiveSubnav() {
     const links = $$('.product-subnav a');
