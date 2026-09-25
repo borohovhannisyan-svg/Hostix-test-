@@ -149,6 +149,8 @@ contact.addEventListener('submit',e=>{
   status.textContent='Данные заполнены. Это демонстрационная форма: отправка пока не подключена.';
 });
 
+const incomingDomain=new URLSearchParams(location.search).get('domain');
+if(incomingDomain)domainInput.value=normalizeDomain(incomingDomain);
 renderResult(normalizeDomain(domainInput.value));
 applyZoneExpansion();
 applyFilter('all');
