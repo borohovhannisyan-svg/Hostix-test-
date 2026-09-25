@@ -48,6 +48,42 @@
     if(!dialog||!heading||!body)return;
     heading.textContent=title; body.innerHTML=content; if(!dialog.open)dialog.showModal();
   }
+  const icon=name=>`<svg class="icon" aria-hidden="true"><use href="#${name}"></use></svg>`;
+  function yerevanPhoneIsOpen(){
+    const parts=Object.fromEntries(new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Yerevan',weekday:'short',hour:'2-digit',hourCycle:'h23'}).formatToParts(new Date()).map(part=>[part.type,part.value]));
+    return ['Mon','Tue','Wed','Thu','Fri'].includes(parts.weekday)&&Number(parts.hour)>=10&&Number(parts.hour)<19;
+  }
+  async function sendContactRequest(form,type,status,successText){
+    if(!form.reportValidity())return;
+    const data=Object.fromEntries(new FormData(form));
+    if(!data.email&&!data.phone){status.textContent='Укажите e-mail или номер телефона.';form.elements.email.focus();return}
+    const submit=form.querySelector('[type="submit"]');submit.disabled=true;status.textContent='Отправляем запрос…';
+    try{
+      const response=await fetch('/api/contact-request',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...data,type,page:location.pathname}),signal:AbortSignal.timeout(20000)});
+      const result=await response.json();if(!response.ok||result.accepted!==true)throw new Error('Not accepted');
+      form.hidden=true;status.textContent=successText;
+    }catch{
+      const subject=encodeURIComponent(data.topic||'Запрос с сайта ENTRA');
+      const body=encodeURIComponent(`E-mail: ${data.email||'—'}\nТелефон: ${data.phone||'—'}\n\n${data.message}`);
+      status.innerHTML=`Не удалось отправить автоматически. <a href="mailto:info@entra.am?subject=${subject}&body=${body}">Отправить по e-mail</a>.`;
+    }finally{submit.disabled=false}
+  }
+  function openChat(){
+    openDialog('Онлайн-чат',`<div class="support-chat-intro">${icon('i-chat')}<p><strong>Здравствуйте!</strong><br>Опишите вопрос — специалист ответит в этой линии связи.</p></div><form class="contact-popup-form" id="support-chat-form" novalidate><label>Ваш вопрос<textarea name="message" rows="4" maxlength="2000" placeholder="Коротко опишите задачу" required></textarea></label><label>E-mail для ответа<input name="email" type="email" maxlength="254" autocomplete="email" placeholder="name@company.com" required></label><input name="phone" type="hidden" value=""><input name="topic" type="hidden" value="Онлайн-чат"><button class="btn" type="submit">Отправить сообщение →</button></form><p class="popup-form-status" role="status" aria-live="polite"></p>`);
+    const form=$('#support-chat-form'),status=$('.popup-form-status',form?.parentElement||document);
+    form?.addEventListener('submit',event=>{event.preventDefault();sendContactRequest(form,'chat',status,'Спасибо, сообщение отправлено. Специалист ответит вам по e-mail.')});
+  }
+  function openSupport(){
+    const phoneOpen=yerevanPhoneIsOpen();
+    openDialog('Поддержка 24/7',`<p>Выберите удобный способ связи.</p><div class="support-options"><a class="support-option${phoneOpen?'':' is-unavailable'}" href="${phoneOpen?'tel:+37460405060':'#'}" ${phoneOpen?'':'aria-disabled="true"'} data-support-phone>${icon('i-phone')}<span><strong>Телефон</strong><small>${phoneOpen?'+374 60 40 50 60':'Сейчас недоступен'}</small></span></a><button class="support-option" type="button" data-open-chat>${icon('i-chat')}<span><strong>Онлайн-чат</strong><small>Написать на сайте</small></span></button><a class="support-option" href="https://amweb.am/submitticket.php" target="_blank" rel="noopener">${icon('i-ticket')}<span><strong>Открыть тикет</strong><small>В личном кабинете</small></span></a><span class="support-option is-unavailable" aria-disabled="true">${icon('i-send')}<span><strong>Telegram</strong><small>Ссылка появится скоро</small></span></span><a class="support-option" href="mailto:info@entra.am">${icon('i-mail')}<span><strong>Электронная почта</strong><small>info@entra.am</small></span></a></div>${phoneOpen?'':`<p class="support-hours-note">Звонки принимаем по будням с 10:00 до 19:00 по Еревану. Сейчас напишите в онлайн-чат, откройте тикет или отправьте e-mail.</p>`}`);
+    $('[data-support-phone][aria-disabled="true"]')?.addEventListener('click',event=>event.preventDefault());
+    $('[data-open-chat]')?.addEventListener('click',openChat);
+  }
+  function openConsultation(){
+    openDialog('Консультация со специалистом',`<p>Опишите задачу и оставьте удобный контакт. Специалист свяжется с вами в течение 12 часов.</p><form class="contact-popup-form" id="consultation-form" novalidate><label>Тема<input name="topic" maxlength="140" placeholder="Например: подобрать VPS" required></label><label>Сообщение<textarea name="message" rows="4" maxlength="2000" placeholder="Коротко опишите задачу" required></textarea></label><div class="contact-popup-grid"><label>E-mail<input name="email" type="email" maxlength="254" autocomplete="email" placeholder="name@company.com"></label><label>Телефон<input name="phone" type="tel" maxlength="40" autocomplete="tel" placeholder="+374 …"></label></div><small class="contact-popup-hint">Укажите e-mail, телефон или оба варианта.</small><button class="btn" type="submit">Отправить запрос →</button></form><p class="popup-form-status" role="status" aria-live="polite"></p>`);
+    const form=$('#consultation-form'),status=$('.popup-form-status',form?.parentElement||document);
+    form?.addEventListener('submit',event=>{event.preventDefault();sendContactRequest(form,'consultation',status,'Спасибо, ваш запрос отправлен. Наш специалист свяжется с вами в течение 12 часов.')});
+  }
   function closeMegaMenus(){
     const header=$('header'); if(!header)return;
     $$('.mega-panel',header).forEach(panel=>{panel.hidden=true});
@@ -71,7 +107,7 @@
 
     $('.nav-direct')?.addEventListener('pointerenter',event=>{if(event.pointerType==='mouse')closeMegaMenus()});
 
-    $('[data-search]')?.addEventListener('click',event=>{
+    $$('[data-search]').forEach(trigger=>trigger.addEventListener('click',event=>{
       event.preventDefault();event.stopImmediatePropagation();
       openDialog('Найти решение',`<p>Опишите задачу — покажем подходящие продукты и услуги.</p><div class="homepage-search-field" role="search"><svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg><input id="solution-search" type="search" placeholder="Например: перенести сайт или сервер в Армении" autocomplete="off" aria-controls="solution-categories"></div><div class="eyebrow">КАТЕГОРИИ</div><div class="solution-categories" id="solution-categories" aria-live="polite"></div><p class="search-visual-status" id="search-visual-status">Введите запрос или выберите категорию.</p>`);
       const input=$('#solution-search'),status=$('#search-visual-status'),categories=$('#solution-categories');
@@ -83,7 +119,12 @@
       input?.addEventListener('input',update);
       input?.addEventListener('keydown',event=>{if(event.key==='Enter'&&currentResults[0]){event.preventDefault();location.href=currentResults[0][1]}});
       update();input?.focus();
-    },true);
+    },true));
+
+    $$('.support-link').forEach(link=>link.addEventListener('click',event=>{event.preventDefault();openSupport()}));
+    const topbarPhone=$('.topbar .phone-link');
+    if(topbarPhone&&!yerevanPhoneIsOpen()){topbarPhone.classList.add('is-unavailable');topbarPhone.setAttribute('aria-label','Телефон доступен по будням с 10:00 до 19:00');topbarPhone.addEventListener('click',event=>{event.preventDefault();openSupport()})}
+    $$('.hero .actions a[href="#contact"]').forEach(link=>link.addEventListener('click',event=>{event.preventDefault();openConsultation()}));
 
     const loginLink=$('.nav-actions a[href*="amweb.am/login"]');
     if(loginLink){const button=document.createElement('button');button.className=loginLink.className;button.type='button';button.textContent='Войти →';loginLink.replaceWith(button);button.addEventListener('click',()=>openDialog('Личный кабинет',`<p>Войдите в существующий аккаунт или создайте новый.</p><div class="login-choices"><a class="btn" href="https://amweb.am/login">Войти →</a><a class="btn outline" href="https://amweb.am/register.php">Регистрация →</a></div>`))}
