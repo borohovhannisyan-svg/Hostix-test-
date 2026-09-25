@@ -84,6 +84,52 @@
     const form=$('#consultation-form'),status=$('.popup-form-status',form?.parentElement||document);
     form?.addEventListener('submit',event=>{event.preventDefault();sendContactRequest(form,'consultation',status,'Спасибо, ваш запрос отправлен. Наш специалист свяжется с вами в течение 12 часов.')});
   }
+  function initHomepagePolish(){
+    const file=location.pathname.split('/').pop();
+    if(file&&file!=='index.html'&&file!=='entra-homepage.html')return;
+
+    const domainForm=$('.domain-search');
+    domainForm?.addEventListener('submit',event=>{
+      event.preventDefault();event.stopImmediatePropagation();
+      const input=$('input',domainForm),value=input?.value.trim();
+      if(!value){input?.focus();return}
+      location.href=`domain-registration.html?domain=${encodeURIComponent(value)}#zones`;
+    },true);
+
+    const productLinks={
+      hosting:'virtual-hosting.html#plans',domains:'domain-registration.html#top',email:'entra-mail.html',
+      vps:'vps-hosting.html#plans',servers:'dedicated-server.html#catalog',vpn:'vpn-armenia.html'
+    };
+    Object.entries(productLinks).forEach(([name,href])=>{
+      const link=$(`.product.${name} .card-link`);if(link)link.href=href;
+    });
+
+    const track=$('#services-track');
+    if(track){
+      const items=[
+        ['Техническое сопровождение проекта','Настройка, обновления и контроль инфраструктуры.','Настройка','Мониторинг','technical-support.html'],
+        ['IPv4 / IPv6','Адреса для серверов, сервисов и сетевой инфраструктуры.','IPv4','IPv6','ip-addresses.html'],
+        ['Сетевые услуги','Свяжем офис, облако и серверы в единую частную сеть.','Private VLAN','Связность','network-services.html'],
+        ['Защита от DDoS','Фильтрация атак и защита доступности ваших сервисов.','DDoS','WAF','ddos-protection.html'],
+        ['Корпоративный почтовый сервер','Почтовая инфраструктура под контролем вашей компании.','Почта','Сервер','corporate-mail-server.html'],
+        ['Хранение данных','Резервные копии и хранение критичных данных.','Backup','Хранилище','data-storage.html'],
+        ['Создание инфраструктуры','Проектирование и запуск инфраструктуры под задачи бизнеса.','Проектирование','Запуск','it-infrastructure.html']
+      ];
+      track.innerHTML=items.map((item,index)=>`<article class="service metal-card"><div class="metal-graphic graphic-${index%6}" aria-hidden="true"><i></i><i></i><i></i><i></i></div><h3>${item[0]}</h3><p>${item[1]}</p><div class="pills"><span>${item[2]}</span><span>${item[3]}</span></div><a class="more card-link" href="${item[4]}" aria-label="${item[0]} — подробнее">Подробнее →</a></article>`).join('');
+      let timer;
+      const stop=()=>{clearInterval(timer);timer=undefined};
+      const start=()=>{if(timer||matchMedia('(prefers-reduced-motion: reduce)').matches)return;timer=setInterval(()=>{const card=$('.service',track),step=(card?.getBoundingClientRect().width||320)+20,end=track.scrollLeft+track.clientWidth>=track.scrollWidth-12;track.scrollTo({left:end?0:track.scrollLeft+step,behavior:'smooth'})},3200)};
+      track.addEventListener('pointerenter',stop);track.addEventListener('pointerleave',start);
+      track.addEventListener('focusin',stop);track.addEventListener('focusout',()=>setTimeout(()=>{if(!track.contains(document.activeElement))start()},0));
+      document.addEventListener('visibilitychange',()=>document.hidden?stop():start());start();
+    }
+
+    const section=$('#infrastructure.infra');
+    if(section){
+      section.classList.add('control-section');
+      section.innerHTML=`<div class="wrap"><div class="control-layout"><div class="control-copy"><div class="eyebrow">УПРАВЛЕНИЕ</div><h2>Полный контроль <em>над оборудованием</em></h2><p>Доступ к серверу и базовые инфраструктурные функции без лишних уровней между вами и железом.</p></div><div class="control-feature-grid"><article class="control-feature"><h3>iLO / iDRAC</h3><p>Удалённое управление сервером независимо от состояния операционной системы.</p></article><article class="control-feature"><h3>Root / Administrator</h3><p>Полный административный доступ к вашему выделенному серверу.</p></article><article class="control-feature"><h3>Мониторинг</h3><p>Контроль оборудования и состояния основных компонентов сервера.</p></article><article class="control-feature"><h3>Замена оборудования</h3><p>При аппаратной неисправности заменяем проблемный компонент.</p></article></div></div><div class="control-metrics"><div><strong>0 ֏</strong><span>Отсутствует установочный платёж</span></div><div><strong>4 × IPv4</strong><span>Выделенных адреса в подарок</span></div><div><strong>1 Гбит/с</strong><span>Канал и безлимитный трафик</span></div></div></div>`;
+    }
+  }
   function closeMegaMenus(){
     const header=$('header'); if(!header)return;
     $$('.mega-panel',header).forEach(panel=>{panel.hidden=true});
@@ -125,6 +171,7 @@
     const topbarPhone=$('.topbar .phone-link');
     if(topbarPhone&&!yerevanPhoneIsOpen()){topbarPhone.classList.add('is-unavailable');topbarPhone.setAttribute('aria-label','Телефон доступен по будням с 10:00 до 19:00');topbarPhone.addEventListener('click',event=>{event.preventDefault();openSupport()})}
     $$('.hero .actions a[href="#contact"]').forEach(link=>link.addEventListener('click',event=>{event.preventDefault();openConsultation()}));
+    initHomepagePolish();
 
     const loginLink=$('.nav-actions a[href*="amweb.am/login"]');
     if(loginLink){const button=document.createElement('button');button.className=loginLink.className;button.type='button';button.textContent='Войти →';loginLink.replaceWith(button);button.addEventListener('click',()=>openDialog('Личный кабинет',`<p>Войдите в существующий аккаунт или создайте новый.</p><div class="login-choices"><a class="btn" href="https://amweb.am/login">Войти →</a><a class="btn outline" href="https://amweb.am/register.php">Регистрация →</a></div>`))}
