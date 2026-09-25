@@ -13,6 +13,7 @@ header .navlinks>button,header .navlinks>a.nav-direct{font-size:16px}
 .homepage-search-field{position:relative;margin:4px 0 22px}
 .homepage-search-field svg{position:absolute;left:15px;top:50%;width:19px;height:19px;transform:translateY(-50%);color:var(--purple)}
 .homepage-search-field input{min-height:52px;padding-left:46px;border-radius:12px;font-size:14px}
+.homepage-search-field input:focus,.homepage-search-field input:focus-visible{outline:0;border-color:#d8cae8;box-shadow:none}
 .solution-categories{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:12px}
 .solution-categories a{padding:12px;border:1px solid var(--line);border-radius:10px;background:#fbf9fe;font-size:12px;font-weight:600}
 .solution-categories a:hover,.solution-categories a:focus-visible{color:var(--purple);border-color:#c9afe8;background:#f4edfd}

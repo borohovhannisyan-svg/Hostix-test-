@@ -3,6 +3,38 @@
   const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
   const currencies={rub:{label:'₽ RUB',symbol:'₽'},amd:{label:'֏ AMD',symbol:'֏'},usd:{label:'$ USD',symbol:'$'}};
   const languageCurrency={ru:'rub',hy:'amd',am:'amd',en:'usd'};
+  const defaultSolutions=[
+    ['Домены','domain-registration.html#top'],['Хостинг','virtual-hosting.html#plans'],['Облако и VPS','vps-hosting.html#plans'],
+    ['Серверы','dedicated-server.html#catalog'],['Почта','entra-mail.html'],['VPN','vpn-armenia.html']
+  ];
+  const solutionIndex=[
+    ['Регистрация домена','domain-registration.html#top','домен имя сайт регистрация купить скрытая whois dns'],
+    ['SSL-сертификаты','ssl-certificates.html','ssl сертификат https защита сайта wildcard dv ov ev'],
+    ['Виртуальный хостинг','virtual-hosting.html#plans','хостинг сайт cpanel виртуальный перенос сайта'],
+    ['Премиум-хостинг','premium-hosting.html#plans','хостинг премиум быстрый сайт ресурсы'],
+    ['WordPress-хостинг','wordpress-hosting.html#plans','хостинг wordpress вордпресс блог сайт'],
+    ['Хостинг для 1С-Битрикс','1c-bitrix-hosting.html#plans','хостинг 1с битрикс bitrix сайт'],
+    ['VPS / VDS','vps-hosting.html#plans','vps vds облако виртуальный сервер linux windows армения европа'],
+    ['Виртуальные рабочие столы Windows','windows-desktop.html#plans','виртуальный рабочий стол windows rdp удаленная работа'],
+    ['Облачные базы данных','cloud-database.html','база данных database mysql postgresql облако dbaas'],
+    ['S3-хранилище','s3-storage.html','s3 объектное хранилище storage backup файлы данные'],
+    ['FTP-хранилище','ftp-storage.html','ftp хранилище storage backup файлы данные'],
+    ['Выделенные серверы','dedicated-server.html#catalog','сервер выделенный dedicated bare metal оборудование'],
+    ['Колокация','server-colocation.html','колокация colocation стойка разместить сервер дата центр'],
+    ['Выделенные рабочие столы Windows','windows-dedicated-desktop.html','выделенный рабочий стол windows rdp сервер'],
+    ['Сервер для 1С','1c-server.html','сервер 1с бухгалтерия windows'],
+    ['Корпоративная почта','entra-mail.html','почта email e-mail корпоративная ящик домен'],
+    ['Почтовый сервер','corporate-mail-server.html','почта email e-mail корпоративная сервер'],
+    ['VPN в Армении','vpn-armenia.html','vpn впн армения армянский ip доступ'],
+    ['VPN в Европе','vpn-europe.html','vpn впн европа европейский ip доступ'],
+    ['Сервер для VPN','vpn-server.html','vpn впн сервер выделенный ip'],
+    ['Корпоративный VPN','corporate-vpn.html','vpn впн корпоративный офис команда сеть'],
+    ['Техническое сопровождение','technical-support.html','поддержка помощь сопровождение администрирование перенос миграция настройка'],
+    ['IP-адреса','ip-addresses.html','ip ipv4 ipv6 адрес сеть bgp'],
+    ['DDoS и WAF','ddos-protection.html','ddos waf защита атака безопасность'],
+    ['Хранение и резервное копирование','data-storage.html','backup бэкап резервное копирование хранение данные'],
+    ['Создание IT-инфраструктуры','it-infrastructure.html','инфраструктура проектирование сервер облако сеть']
+  ];
 
   function setCurrency(code,source='manual'){
     if(!currencies[code])return;
@@ -41,9 +73,16 @@
 
     $('[data-search]')?.addEventListener('click',event=>{
       event.preventDefault();event.stopImmediatePropagation();
-      openDialog('Найти решение',`<p>Опишите задачу — умный подбор продукта подключим на следующем этапе.</p><div class="homepage-search-field"><svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg><input id="solution-search" type="search" placeholder="Например: перенести сайт или сервер в Армении" autocomplete="off"></div><div class="eyebrow">КАТЕГОРИИ</div><div class="solution-categories"><a href="domain-registration.html#top">Домены</a><a href="entra-hosting.html#standard">Хостинг</a><a href="entra-vps.html#plans">Облако и VPS</a><a href="entra-dedicated.html#catalog">Серверы</a><a href="entra-mail.html">Почта</a><a href="entra-vpn.html#armenia">VPN</a></div><p class="search-visual-status" id="search-visual-status">Введите запрос — здесь появятся подходящие решения.</p>`);
-      const input=$('#solution-search'),status=$('#search-visual-status');
-      input?.addEventListener('input',()=>{status.textContent=input.value.trim()?'Умный поиск будет подключён позже. Сейчас можно выбрать категорию ниже.':'Введите запрос — здесь появятся подходящие решения.'});input?.focus();
+      openDialog('Найти решение',`<p>Опишите задачу — покажем подходящие продукты и услуги.</p><div class="homepage-search-field" role="search"><svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg><input id="solution-search" type="search" placeholder="Например: перенести сайт или сервер в Армении" autocomplete="off" aria-controls="solution-categories"></div><div class="eyebrow">КАТЕГОРИИ</div><div class="solution-categories" id="solution-categories" aria-live="polite"></div><p class="search-visual-status" id="search-visual-status">Введите запрос или выберите категорию.</p>`);
+      const input=$('#solution-search'),status=$('#search-visual-status'),categories=$('#solution-categories');
+      let currentResults=[];
+      const normalize=value=>value.toLowerCase().replaceAll('ё','е').replace(/[^a-zа-я0-9]+/gi,' ').trim();
+      const render=items=>{currentResults=items;categories.innerHTML=items.map(([title,href])=>`<a href="${href}">${title}</a>`).join('')};
+      const findSolutions=value=>{const query=normalize(value),tokens=query.split(' ').filter(token=>token.length>1);if(!query)return defaultSolutions;return solutionIndex.map(item=>{const title=normalize(item[0]),text=`${title} ${normalize(item[2])}`;let score=text.includes(query)?12:0;tokens.forEach(token=>{if(title.includes(token))score+=5;else if(text.includes(token))score+=2});return {item,score}}).filter(result=>result.score>0).sort((a,b)=>b.score-a.score).slice(0,6).map(result=>result.item)};
+      const update=()=>{const query=input.value.trim(),matches=findSolutions(query);render(matches.length?matches:defaultSolutions);status.textContent=!query?'Введите запрос или выберите категорию.':matches.length?`Найдено решений: ${matches.length}. Enter — открыть первое.`:'Точных совпадений нет — выберите основной раздел.'};
+      input?.addEventListener('input',update);
+      input?.addEventListener('keydown',event=>{if(event.key==='Enter'&&currentResults[0]){event.preventDefault();location.href=currentResults[0][1]}});
+      update();input?.focus();
     },true);
 
     const loginLink=$('.nav-actions a[href*="amweb.am/login"]');
