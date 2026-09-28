@@ -124,11 +124,17 @@
       document.addEventListener('visibilitychange',()=>document.hidden?stop():start());start();
     }
 
-    const section=$('#infrastructure.infra');
-    if(section){
-      section.classList.add('control-section');
-      section.innerHTML=`<div class="wrap"><div class="control-layout"><div class="control-copy"><div class="eyebrow">УПРАВЛЕНИЕ</div><h2>Полный контроль <em>над оборудованием</em></h2><p>Доступ к серверу и базовые инфраструктурные функции без лишних уровней между вами и железом.</p></div><div class="control-feature-grid"><article class="control-feature"><h3>iLO / iDRAC</h3><p>Удалённое управление сервером независимо от состояния операционной системы.</p></article><article class="control-feature"><h3>Root / Administrator</h3><p>Полный административный доступ к вашему выделенному серверу.</p></article><article class="control-feature"><h3>Мониторинг</h3><p>Контроль оборудования и состояния основных компонентов сервера.</p></article><article class="control-feature"><h3>Замена оборудования</h3><p>При аппаратной неисправности заменяем проблемный компонент.</p></article></div></div><div class="control-metrics"><div><strong>0 ֏</strong><span>Отсутствует установочный платёж</span></div><div><strong>4 × IPv4</strong><span>Выделенных адреса в подарок</span></div><div><strong>1 Гбит/с</strong><span>Канал и безлимитный трафик</span></div></div></div>`;
+    const infrastructure=$('#infrastructure.infra');
+    if(infrastructure){
+      infrastructure.classList.remove('control-section');
+      const heading=$('h2',infrastructure),facts=$('.standards-facts',infrastructure);
+      if(heading)heading.innerHTML='Отвечаем за дата-центры, серверы <em>и данные на них</em>';
+      if(facts){
+        facts.classList.add('standards-facts-updated');
+        facts.innerHTML='<div class="standards-responsibilities"><article><span>01</span><h3>Дата-центры уровня TIER III</h3><p>Размещаем инфраструктуру в надёжных дата-центрах Армении.</p></article><article><span>02</span><h3>Высокий аптайм</h3><p>Гарантируем высокую отказоустойчивость. Доступность по SLA — <strong>99,98%</strong>.</p></article><article><span>03</span><h3>Персональные данные в безопасности</h3><p>Соответствуем международным требованиям по защите данных.</p></article></div><div class="standards-compliance"><article><strong>ISO/IEC 27001</strong><p>Подход к хранению, обработке и защите персональных данных на основе международного стандарта информационной безопасности.</p></article><article><strong>PCI DSS</strong><p>Международные требования безопасности для инфраструктуры, связанной с обработкой платёжных данных VISA и Mastercard.</p></article></div><div class="ovio-capacity"><div><strong>2 МВт</strong><span>мощность дата-центра</span></div><div><strong>216</strong><span>серверных стоек на площадке</span></div></div><div class="standards-monitoring">Мониторинг 24/7.</div>';
+      }
     }
+
   }
   function closeMegaMenus(){
     const header=$('header'); if(!header)return;
