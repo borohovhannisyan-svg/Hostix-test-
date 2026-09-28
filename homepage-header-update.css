@@ -41,3 +41,20 @@ header .navlinks>button,header .navlinks>a.nav-direct{font-size:16px}
 .login-choices .btn{margin-top:0}
 @media(max-width:1100px){header .navlinks>button,header .navlinks>a.nav-direct{font-size:14px}}
 @media(max-width:760px){.currency-current{font-size:9px}.currency-options{top:29px;right:-2px}.solution-categories,.support-options,.contact-popup-grid,.control-layout,.control-feature-grid,.control-metrics{grid-template-columns:1fr}.control-layout{gap:24px}.control-copy h2{font-size:29px}.control-feature-grid{gap:10px}.control-feature,.control-metrics>div{padding:18px}.control-metrics{margin-top:24px;gap:10px}.login-choices{grid-template-columns:1fr}}
+
+/* Infrastructure map restoration */
+#infrastructure .standards-canvas{min-height:720px}
+#infrastructure .standards-facts-updated{width:57%;max-width:720px;display:grid;gap:14px}
+.standards-responsibilities{display:grid;gap:10px}
+.standards-responsibilities article{display:grid;grid-template-columns:42px 1fr;column-gap:14px;padding:17px 20px;border:1px solid #d9cceb;border-radius:10px;background:#fffffff0;box-shadow:0 8px 24px #59337a0a}
+.standards-responsibilities article>span{grid-row:1/3;color:var(--purple);font-size:13px;font-weight:800;letter-spacing:.08em;padding-top:3px}
+.standards-responsibilities h3{font-size:18px;letter-spacing:-.02em;margin:0 0 5px}
+.standards-responsibilities p{color:var(--muted);font-size:13px;line-height:1.55}
+.standards-responsibilities p strong{color:var(--ink)}
+.standards-compliance{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.standards-compliance article{padding:18px 20px;border:1px solid #cbb3e8;border-radius:10px;background:#fffefde8}
+.standards-compliance article>strong{display:block;color:var(--purple);font-size:17px;margin-bottom:7px}
+.standards-compliance p{color:var(--muted);font-size:12px;line-height:1.55}
+#infrastructure .ovio-capacity{margin:0}
+.standards-monitoring{padding:11px 16px;border:1px solid #cbb3e8;border-radius:8px;background:#fffefde8;color:var(--ink);font-size:13px;font-weight:600;text-align:center}
+@media(max-width:760px){#infrastructure> .wrap h2{font-size:28px;margin-bottom:22px}#infrastructure .standards-canvas{min-height:0;display:flex;flex-direction:column;align-items:stretch;overflow:hidden}#infrastructure .original-map{position:relative;order:0;width:205%;max-width:none;height:auto;left:-102%;top:auto;bottom:auto;transform:none;margin-bottom:18px;flex:0 0 auto}#infrastructure .standards-inner{order:1;padding-top:0;padding-bottom:0}#infrastructure .standards-facts-updated{width:100%;max-width:none;gap:10px}.standards-responsibilities{gap:10px}.standards-responsibilities article{grid-template-columns:34px 1fr;padding:16px}.standards-responsibilities h3{font-size:17px}.standards-responsibilities p{font-size:13px}.standards-compliance{grid-template-columns:1fr;gap:10px}.standards-compliance article{padding:17px 16px}.standards-compliance p{font-size:13px}#infrastructure .ovio-capacity{grid-template-columns:1fr;gap:10px}#infrastructure .ovio-capacity>div{padding:16px}.standards-monitoring{text-align:left;padding:14px 16px}}
