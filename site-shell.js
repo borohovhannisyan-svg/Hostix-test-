@@ -511,9 +511,9 @@
 (() => {
   const style = document.createElement('link');
   style.rel = 'stylesheet';
-  style.href = 'homepage-header-update.css';
+  style.href = 'homepage-header-update.css?v=20260928-1';
   document.head.append(style);
   const script = document.createElement('script');
-  script.src = 'homepage-header-update.js';
+  script.src = 'homepage-header-update.js?v=20260928-1';
   document.head.append(script);
 })();
